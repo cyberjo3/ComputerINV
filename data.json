@@ -1,22 +1,84 @@
 {
-  "assets": [],
-  "accessories": [],
+  "assets": [
+    {
+      "tag": "AST-001",
+      "type": "Laptop",
+      "os": "macOS",
+      "model": "MacBook Pro 14-inch M3",
+      "serial": "C02XYZ123456",
+      "cpu": "Apple M3",
+      "ram": "16 GB",
+      "storage": "512 GB SSD",
+      "mac": "3C:06:30:AA:BB:CC",
+      "ip": "192.168.1.105",
+      "status": "Deployed",
+      "assignedTo": "EMP-001",
+      "purchaseDate": "2026-01-10",
+      "warrantyDate": "2027-01-10",
+      "notes": "เครื่องประจำตำแหน่ง IT Security",
+      "security": {
+        "diskEncryption": true,
+        "usbBlocked": true,
+        "edrActive": true,
+        "osBuild": "macOS 15.1",
+        "lastPatchDate": "2026-11-01",
+        "isCompliant": true,
+        "lastAuditedAt": "2026-11-15T03:00:00.000Z"
+      },
+      "auditHistory": []
+    },
+    {
+      "tag": "q222",
+      "type": "Desktop",
+      "os": "Windows",
+      "model": "22222",
+      "serial": "22222",
+      "cpu": "I9",
+      "ram": "32",
+      "storage": "1 tb",
+      "mac": "2222",
+      "ip": "2222",
+      "status": "Ready to Deploy",
+      "assignedTo": "",
+      "purchaseDate": "",
+      "warrantyDate": "",
+      "notes": "",
+      "security": null,
+      "auditHistory": []
+    }
+  ],
+  "accessories": [
+    {
+      "id": "ACC-001",
+      "type": "Monitor",
+      "serial": "CN-0M345-XXXXX",
+      "desc": "Dell UltraSharp 27-inch 4K",
+      "assignedTo": "EMP-001"
+    }
+  ],
   "users": [
     {
-      "empId": "aaaa",
-      "firstName": "aaaa",
-      "lastName": "aaa",
-      "dept": "Operations",
-      "email": "kanshi9824@gmail.com"
+      "empId": "EMP-001",
+      "firstName": "Kanshi",
+      "lastName": "K.",
+      "dept": "IT Security",
+      "email": "kanshi@company.com"
     }
   ],
   "logs": [
     {
-      "id": "LOG-1794714024224",
-      "timestamp": "2026-11-15T03:40:24.224Z",
-      "category": "USER_MGMT",
-      "target": "aaaa",
-      "details": "Added employee: aaaa aaa (Operations)"
+      "id": "LOG-1794714144137",
+      "timestamp": "2026-11-15T03:42:24.137Z",
+      "category": "ASSET_MGMT",
+      "target": "q222",
+      "details": "Added computer: 22222 (22222)"
+    },
+    {
+      "id": "LOG-1794714052127",
+      "timestamp": "2026-11-15T03:40:52.127Z",
+      "category": "SYSTEM",
+      "target": "DATABASE",
+      "details": "Imported JSON database backup"
     }
   ]
 }
