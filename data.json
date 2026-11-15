@@ -1,6 +1,22 @@
 {
   "assets": [],
   "accessories": [],
-  "users": [],
-  "logs": []
+  "users": [
+    {
+      "empId": "aaaa",
+      "firstName": "aaaa",
+      "lastName": "aaa",
+      "dept": "Operations",
+      "email": "kanshi9824@gmail.com"
+    }
+  ],
+  "logs": [
+    {
+      "id": "LOG-1794714024224",
+      "timestamp": "2026-11-15T03:40:24.224Z",
+      "category": "USER_MGMT",
+      "target": "aaaa",
+      "details": "Added employee: aaaa aaa (Operations)"
+    }
+  ]
 }
