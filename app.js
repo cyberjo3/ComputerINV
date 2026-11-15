@@ -1,5 +1,4 @@
 // ================= AUTHENTICATION & LOCK SYSTEM =================
-// กำหนดรหัสผ่านตรงตัว (เปลี่ยนรหัสผ่านที่ต้องการได้ที่นี่)
 const APP_PASSCODE = "admin1234";
 
 function checkAuthStatus() {
@@ -49,17 +48,7 @@ function lockSystem() {
     checkAuthStatus();
 }
 
-// ตรวจสอบ Authentication ทันที
 checkAuthStatus();
-
-function lockSystem() {
-    sessionStorage.removeItem('it_inv_auth');
-    checkAuthStatus();
-}
-
-// ตรวจสอบ Authentication ทันที
-checkAuthStatus();
-
 
 // ================= DATA & APPLICATION STATE =================
 let db = JSON.parse(localStorage.getItem('it-inventory-db')) || { assets: [], accessories: [], users: [], logs: [] };
@@ -70,7 +59,6 @@ let currentDetailIndex = null;
 let currentSecurityFilter = 'ALL';
 
 const DOM = {
-    // Views
     tabsNav: document.getElementById('tabs-nav'),
     viewAssets: document.getElementById('view-assets'),
     viewAssetForm: document.getElementById('view-asset-form'),
@@ -81,18 +69,15 @@ const DOM = {
     assetDetailModal: document.getElementById('assetDetailModal'),
     modalAssetLogs: document.getElementById('modal-asset-logs'),
     
-    // Tabs
     tabAssets: document.getElementById('tab-assets'),
     tabAccessories: document.getElementById('tab-accessories'),
     tabUsers: document.getElementById('tab-users'),
     tabLogs: document.getElementById('tab-logs'),
 
-    // Assets
     assetFormTitle: document.getElementById('assetFormTitle'),
     assetForm: document.getElementById('addAssetForm'),
     assetTableBody: document.getElementById('assetTableBody'),
     
-    // Stats
     total: document.getElementById('stat-total'),
     deployed: document.getElementById('stat-deployed'),
     ready: document.getElementById('stat-ready'),
@@ -102,30 +87,25 @@ const DOM = {
     statSecNonCompliant: document.getElementById('stat-sec-noncompliant'),
     secFilterSelect: document.getElementById('secFilterSelect'),
 
-    // Accessories
     accessoryFormTitle: document.getElementById('accessoryFormTitle'),
     accessoryForm: document.getElementById('addAccessoryForm'),
     accessoryTableBody: document.getElementById('accessoryTableBody'),
 
-    // Users
     userForm: document.getElementById('addUserForm'),
     userTableBody: document.getElementById('userTableBody'),
 
-    // Logs
     logTableBody: document.getElementById('logTableBody'),
 
-    // Global
     exportBtn: document.getElementById('exportBtn'),
     importBtn: document.getElementById('importBtn')
 };
 
-// ================= Logger Helper =================
 function addAuditLog(category, target, details) {
     if (!db.logs) db.logs = [];
     const logEntry = {
         id: 'LOG-' + Date.now(),
         timestamp: new Date().toISOString(),
-        category: category, // 'SECURITY_AUDIT', 'ASSET_MGMT', 'ACCESSORY_MGMT', 'USER_MGMT'
+        category: category,
         target: target,
         details: details
     };
@@ -135,7 +115,6 @@ function addAuditLog(category, target, details) {
     }
 }
 
-// ================= Tab Switching Logic =================
 window.switchTab = (tabName) => {
     DOM.viewAssetForm.classList.add('hidden');
     DOM.viewAccessoryForm.classList.add('hidden');
@@ -170,7 +149,6 @@ window.switchTab = (tabName) => {
     }
 };
 
-// ================= Core Logic =================
 function updateApp() {
     localStorage.setItem('it-inventory-db', JSON.stringify(db));
     renderAssetsTable();
@@ -178,9 +156,10 @@ function updateApp() {
     renderUsersTable();
     renderLogsTable();
     updateStats();
+    
+    pushDataToGitHub();
 }
 
-// ================= Helpers =================
 function populateUserDropdown(selectElementId, selectedValue = "") {
     const selectEl = document.getElementById(selectElementId);
     if (!selectEl) return;
@@ -206,7 +185,6 @@ function getSecurityBadge(sec) {
     return `<span class="px-2 py-0.5 rounded text-xs font-semibold bg-rose-100 text-rose-800"><i class="fas fa-exclamation-triangle mr-1 text-rose-600"></i>Non-Compliant</span>`;
 }
 
-// ================= Assets (Computers) =================
 window.showAssetForm = (editIndex = null) => {
     DOM.viewAssets.classList.add('hidden');
     DOM.viewAssetForm.classList.remove('hidden');
@@ -345,7 +323,7 @@ DOM.assetForm.addEventListener('submit', (e) => {
         addAuditLog('ASSET_MGMT', assetData.tag, `Added computer: ${assetData.model} (${assetData.serial})`);
     } else {
         db.assets[editIndex] = assetData;
-        addAuditLog('ASSET_MGMT', assetData.tag, `Updated specifications or assignment (Assigned to: ${assetData.assignedTo || 'Unassigned'})`);
+        addAuditLog('ASSET_MGMT', assetData.tag, `Updated computer: ${assetData.model}`);
     }
     hideAssetForm();
     updateApp();
@@ -360,7 +338,6 @@ window.deleteAsset = (index) => {
     }
 };
 
-// ================= Asset Detail Modal & Security Compliance =================
 window.openDetailModal = (index) => {
     currentDetailIndex = index;
     const a = db.assets[index];
@@ -496,7 +473,6 @@ window.saveModalSecurity = () => {
     closeDetailModal();
 };
 
-// ================= Accessories Management =================
 window.showAccessoryForm = (editIndex = null) => {
     DOM.viewAccessories.classList.add('hidden');
     DOM.viewAccessoryForm.classList.remove('hidden');
@@ -567,7 +543,7 @@ DOM.accessoryForm.addEventListener('submit', (e) => {
         addAuditLog('ACCESSORY_MGMT', accData.id, `Added accessory: ${accData.type} - ${accData.desc}`);
     } else {
         db.accessories[editIndex] = accData;
-        addAuditLog('ACCESSORY_MGMT', accData.id, `Updated accessory: ${accData.type} (Assigned to: ${accData.assignedTo || 'Unassigned'})`);
+        addAuditLog('ACCESSORY_MGMT', accData.id, `Updated accessory: ${accData.type}`);
     }
     
     hideAccessoryForm();
@@ -583,7 +559,6 @@ window.deleteAccessory = (index) => {
     }
 };
 
-// ================= Users Management =================
 function renderUsersTable() {
     DOM.userTableBody.innerHTML = '';
     db.users.forEach((user, index) => {
@@ -625,7 +600,6 @@ window.deleteUser = (index) => {
     }
 };
 
-// ================= Logs Management =================
 function renderLogsTable() {
     if (!DOM.logTableBody) return;
     DOM.logTableBody.innerHTML = '';
@@ -676,7 +650,6 @@ window.clearAllLogs = () => {
     }
 };
 
-// ================= Import / Export =================
 DOM.exportBtn.addEventListener('click', () => {
     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(db, null, 2));
     const dlAnchorElem = document.createElement('a');
@@ -709,7 +682,6 @@ DOM.importBtn.addEventListener('change', (e) => {
     reader.readAsText(file);
 });
 
-// ================= Export Security Audit Report (CSV) =================
 window.exportSecurityReportCSV = () => {
     if (db.assets.length === 0) {
         alert('No computer assets to export.');
@@ -766,10 +738,133 @@ window.exportSecurityReportCSV = () => {
     document.body.removeChild(link);
 };
 
-// Keydown ESC to close Modal
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeDetailModal();
 });
 
+// ================= GITHUB API AUTO-SYNC MODULE =================
+const GH_CONFIG = {
+    repo: 'cyberjo3/ComputerINV',
+    path: 'data.json',
+    branch: 'main'
+};
+
+function getGitHubToken() {
+    return localStorage.getItem('gh_sync_token') || '';
+}
+
+window.openSettingsModal = () => {
+    document.getElementById('ghTokenInput').value = getGitHubToken();
+    document.getElementById('settingsModal').classList.remove('hidden');
+};
+
+window.closeSettingsModal = () => {
+    document.getElementById('settingsModal').classList.add('hidden');
+};
+
+window.saveGitHubSettings = () => {
+    const token = document.getElementById('ghTokenInput').value.trim();
+    if (!token) {
+        localStorage.removeItem('gh_sync_token');
+        alert('GitHub Token cleared. Auto-sync disabled.');
+    } else {
+        localStorage.setItem('gh_sync_token', token);
+        alert('GitHub Token saved! Testing connection...');
+        pullDataFromGitHub(true);
+    }
+    closeSettingsModal();
+};
+
+async function pullDataFromGitHub(notify = false) {
+    const token = getGitHubToken();
+    if (!token) return;
+
+    const url = `https://api.github.com/repos/${GH_CONFIG.repo}/contents/${GH_CONFIG.path}?ref=${GH_CONFIG.branch}`;
+    
+    try {
+        const res = await fetch(url, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Accept': 'application/vnd.github.v3+json'
+            }
+        });
+
+        if (res.status === 200) {
+            const data = await res.json();
+            const content = decodeURIComponent(escape(atob(data.content)));
+            const parsed = JSON.parse(content);
+
+            if (parsed.assets && parsed.users) {
+                db = parsed;
+                localStorage.setItem('it-inventory-db', JSON.stringify(db));
+                sessionStorage.setItem('gh_file_sha', data.sha);
+                renderAssetsTable();
+                renderAccessoriesTable();
+                renderUsersTable();
+                renderLogsTable();
+                updateStats();
+                if (notify) alert('Cloud Sync: Loaded latest data from GitHub successfully!');
+            }
+        } else if (res.status === 404) {
+            if (notify) alert('File data.json does not exist yet. It will be created on the first save.');
+        } else {
+            if (notify) alert(`GitHub API Error: ${res.statusText}`);
+        }
+    } catch (err) {
+        console.error('Failed to pull from GitHub:', err);
+    }
+}
+
+async function pushDataToGitHub() {
+    const token = getGitHubToken();
+    if (!token) return;
+
+    const url = `https://api.github.com/repos/${GH_CONFIG.repo}/contents/${GH_CONFIG.path}`;
+    
+    let sha = sessionStorage.getItem('gh_file_sha');
+    try {
+        const checkRes = await fetch(`${url}?ref=${GH_CONFIG.branch}`, {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (checkRes.ok) {
+            const checkData = await checkRes.json();
+            sha = checkData.sha;
+        }
+    } catch (e) {}
+
+    const jsonStr = JSON.stringify(db, null, 2);
+    const contentBase64 = btoa(unescape(encodeURIComponent(jsonStr)));
+
+    const body = {
+        message: `Auto-sync: update inventory (${new Date().toLocaleString()})`,
+        content: contentBase64,
+        branch: GH_CONFIG.branch
+    };
+    if (sha) body.sha = sha;
+
+    try {
+        const res = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+                'Accept': 'application/vnd.github.v3+json'
+            },
+            body: JSON.stringify(body)
+        });
+
+        if (res.ok) {
+            const resData = await res.json();
+            sessionStorage.setItem('gh_file_sha', resData.content.sha);
+            console.log('GitHub Auto-sync: Committed successfully.');
+        } else {
+            console.warn('GitHub Auto-sync failed:', await res.text());
+        }
+    } catch (err) {
+        console.error('GitHub Auto-sync Network Error:', err);
+    }
+}
+
 // ================= Initialization =================
 updateApp();
+pullDataFromGitHub();
