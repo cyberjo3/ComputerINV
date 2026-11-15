@@ -43,8 +43,22 @@
       "purchaseDate": "",
       "warrantyDate": "",
       "notes": "",
-      "security": null,
-      "auditHistory": []
+      "security": {
+        "diskEncryption": true,
+        "usbBlocked": true,
+        "edrActive": true,
+        "osBuild": "sss",
+        "lastPatchDate": "2026-11-29",
+        "isCompliant": true,
+        "lastAuditedAt": "2026-11-15T04:04:35.119Z"
+      },
+      "auditHistory": [
+        {
+          "timestamp": "2026-11-15T04:04:35.119Z",
+          "isCompliant": true,
+          "summary": "BitLocker:ON | USB:BLOCK | EDR:ON | Patch:2026-11-29"
+        }
+      ]
     }
   ],
   "accessories": [
@@ -66,6 +80,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1794715475120",
+      "timestamp": "2026-11-15T04:04:35.120Z",
+      "category": "SECURITY_AUDIT",
+      "target": "q222",
+      "details": "Audit saved (COMPLIANT) - BitLocker:ON | USB:BLOCK | EDR:ON | Patch:2026-11-29"
+    },
     {
       "id": "LOG-1794714144137",
       "timestamp": "2026-11-15T03:42:24.137Z",
