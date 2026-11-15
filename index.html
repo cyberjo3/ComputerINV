@@ -51,7 +51,10 @@
             <h1 onclick="switchTab('assets')" class="text-xl font-bold cursor-pointer hover:text-gray-200 transition">
                 <i class="fas fa-shield-alt text-emerald-400 mr-2"></i> My IT Inventory
             </h1>
-            <div class="flex items-center space-x-3">
+            <div class="flex items-center space-x-2">
+                <button onclick="openSettingsModal()" class="bg-slate-700 hover:bg-slate-600 px-3 py-1.5 rounded text-xs transition flex items-center text-slate-300 hover:text-white" title="GitHub Cloud Sync Settings">
+                    <i class="fas fa-sync-alt mr-1.5 text-blue-400"></i> Sync Settings
+                </button>
                 <label class="cursor-pointer bg-blue-600 hover:bg-blue-700 px-3 py-1.5 rounded text-xs transition flex items-center">
                     <i class="fas fa-file-import mr-1.5"></i> Import JSON
                     <input type="file" id="importBtn" class="hidden" accept=".json">
@@ -60,7 +63,7 @@
                     <i class="fas fa-file-download mr-1.5"></i> Backup JSON
                 </button>
                 <button onclick="lockSystem()" class="bg-slate-700 hover:bg-rose-600 px-3 py-1.5 rounded text-xs transition flex items-center text-slate-300 hover:text-white" title="Lock System">
-                    <i class="fas fa-lock mr-1"></i> Lock
+                    <i class="fas fa-lock"></i>
                 </button>
             </div>
         </div>
@@ -183,7 +186,6 @@
                 <form id="addAssetForm" class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <input type="hidden" id="editAssetIndex" value="">
 
-                    <!-- Section: General Info -->
                     <div class="col-span-1 md:col-span-3 text-sm font-bold text-slate-700 border-b pb-1 mt-2">
                         <i class="fas fa-info-circle mr-1"></i> General Information
                     </div>
@@ -216,7 +218,6 @@
                         <input type="text" id="assetSerial" placeholder="Serial Number" class="border p-2 rounded w-full text-sm" required>
                     </div>
 
-                    <!-- Section: Hardware Specs -->
                     <div class="col-span-1 md:col-span-3 text-sm font-bold text-slate-700 border-b pb-1 mt-3">
                         <i class="fas fa-microchip mr-1"></i> Hardware Specifications
                     </div>
@@ -233,7 +234,6 @@
                         <input type="text" id="assetStorage" placeholder="e.g. 512 GB SSD" class="border p-2 rounded w-full text-sm">
                     </div>
 
-                    <!-- Section: Network Info -->
                     <div class="col-span-1 md:col-span-3 text-sm font-bold text-slate-700 border-b pb-1 mt-3">
                         <i class="fas fa-network-wired mr-1"></i> Network Configuration
                     </div>
@@ -254,7 +254,6 @@
                         </select>
                     </div>
 
-                    <!-- Section: Assignment & Dates -->
                     <div class="col-span-1 md:col-span-3 text-sm font-bold text-slate-700 border-b pb-1 mt-3">
                         <i class="fas fa-calendar-alt mr-1"></i> Assignment & Lifecycle
                     </div>
@@ -271,7 +270,6 @@
                         <input type="date" id="assetWarrantyDate" class="border p-2 rounded w-full text-sm">
                     </div>
 
-                    <!-- Notes -->
                     <div class="col-span-1 md:col-span-3">
                         <label class="block text-xs font-semibold text-gray-600 mb-1">Notes / Remarks</label>
                         <textarea id="assetNotes" rows="2" placeholder="Additional notes, accessories bundled, or conditions..." class="border p-2 rounded w-full text-sm"></textarea>
@@ -287,7 +285,7 @@
             </div>
         </div>
 
-        <!-- ==================== ASSET DETAILS MODAL (DOUBLE CLICK VIEW) ==================== -->
+        <!-- ==================== ASSET DETAILS MODAL ==================== -->
         <div id="assetDetailModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
             <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full p-6 overflow-y-auto max-h-[90vh]">
                 <div class="flex justify-between items-center border-b pb-3 mb-4">
@@ -320,7 +318,6 @@
                         <span id="modal-assigned" class="font-medium"></span>
                     </div>
 
-                    <!-- Hardware Specs Section -->
                     <div class="col-span-2 border-t pt-2 mt-2">
                         <h4 class="text-xs font-bold text-slate-700 uppercase mb-2">Hardware Specifications</h4>
                         <div class="grid grid-cols-3 gap-2">
@@ -339,7 +336,6 @@
                         </div>
                     </div>
 
-                    <!-- Network Configuration Section -->
                     <div class="col-span-2 border-t pt-2 mt-2">
                         <h4 class="text-xs font-bold text-slate-700 uppercase mb-2">Network Configuration</h4>
                         <div class="grid grid-cols-2 gap-2">
@@ -354,7 +350,6 @@
                         </div>
                     </div>
 
-                    <!-- Lifecycle Section -->
                     <div class="col-span-2 border-t pt-2 mt-2">
                         <h4 class="text-xs font-bold text-slate-700 uppercase mb-2">Lifecycle & Warranty</h4>
                         <div class="grid grid-cols-2 gap-2">
@@ -369,13 +364,11 @@
                         </div>
                     </div>
 
-                    <!-- Remarks Section -->
                     <div class="col-span-2 border-t pt-2 mt-2">
                         <h4 class="text-xs font-bold text-slate-700 uppercase mb-1">Notes / Remarks</h4>
                         <p id="modal-notes" class="text-gray-600 bg-gray-50 p-3 rounded italic">-</p>
                     </div>
 
-                    <!-- ================= SECURITY COMPLIANCE SECTION ================= -->
                     <div class="col-span-2 border-t pt-3 mt-2">
                         <div class="flex items-center justify-between mb-3">
                             <h4 class="text-xs font-bold text-slate-700 uppercase flex items-center">
@@ -415,14 +408,11 @@
                         </div>
                     </div>
 
-                    <!-- ================= DEVICE AUDIT HISTORY LOG ================= -->
                     <div class="col-span-2 border-t pt-3 mt-2">
                         <h4 class="text-xs font-bold text-slate-700 uppercase mb-2 flex items-center">
                             <i class="fas fa-history text-blue-600 mr-1.5"></i> Audit History (This Computer)
                         </h4>
-                        <div id="modal-asset-logs" class="max-h-36 overflow-y-auto space-y-1.5 text-xs bg-gray-50 p-2.5 rounded border border-gray-200">
-                            <!-- Logs will be populated here -->
-                        </div>
+                        <div id="modal-asset-logs" class="max-h-36 overflow-y-auto space-y-1.5 text-xs bg-gray-50 p-2.5 rounded border border-gray-200"></div>
                     </div>
                 </div>
 
@@ -461,7 +451,7 @@
             </div>
         </div>
 
-        <!-- ==================== ACCESSORY FORM (ADD/EDIT) ==================== -->
+        <!-- ==================== ACCESSORY FORM ==================== -->
         <div id="view-accessory-form" class="hidden">
             <div class="max-w-2xl mx-auto bg-white p-6 rounded shadow mt-4">
                 <div class="flex justify-between items-center mb-4 border-b pb-2">
@@ -577,6 +567,50 @@
         </div>
 
     </div>
+
+    <!-- ================= GITHUB SYNC SETTINGS MODAL ================= -->
+    <div id="settingsModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-xl max-w-md w-full p-6">
+            <div class="flex justify-between items-center border-b pb-3 mb-4">
+                <h3 class="text-base font-bold text-slate-800 flex items-center">
+                    <i class="fab fa-github text-xl mr-2"></i> GitHub Cloud Sync Settings
+                </h3>
+                <button onclick="closeSettingsModal()" class="text-gray-400 hover:text-gray-600 text-lg">&times;</button>
+            </div>
+
+            <div class="space-y-4 text-xs">
+                <div class="bg-blue-50 border border-blue-200 text-blue-800 p-3 rounded-lg leading-relaxed">
+                    <i class="fas fa-info-circle mr-1"></i> Token จะถูกบันทึกไว้ในเบราว์เซอร์เครื่องนี้เท่านั้น เพื่อใช้ Auto-commit ข้อมูลขึ้น Repo ของคุณ
+                </div>
+
+                <div>
+                    <label class="block font-semibold text-gray-700 mb-1">GitHub Personal Access Token (PAT) *</label>
+                    <input type="password" id="ghTokenInput" placeholder="github_pat_..." class="w-full p-2 border rounded border-gray-300 outline-none font-mono">
+                </div>
+
+                <div>
+                    <label class="block font-semibold text-gray-700 mb-1">Repository</label>
+                    <input type="text" id="ghRepoInput" value="cyberjo3/ComputerINV" class="w-full p-2 border rounded border-gray-300 outline-none font-mono bg-gray-50" readonly>
+                </div>
+
+                <div>
+                    <label class="block font-semibold text-gray-700 mb-1">Target File</label>
+                    <input type="text" value="data.json" class="w-full p-2 border rounded border-gray-300 outline-none font-mono bg-gray-50" readonly>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center mt-6 border-t pt-3">
+                <button onclick="pullDataFromGitHub(true)" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1.5 rounded text-xs flex items-center">
+                    <i class="fas fa-cloud-download-alt mr-1"></i> Pull Data Now
+                </button>
+                <div class="space-x-2">
+                    <button onclick="closeSettingsModal()" class="bg-gray-200 text-gray-700 px-3 py-1.5 rounded text-xs hover:bg-gray-300">Cancel</button>
+                    <button onclick="saveGitHubSettings()" class="bg-slate-800 text-white px-4 py-1.5 rounded text-xs hover:bg-slate-700 shadow">Save Token</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="app.js"></script>
 </body>
 </html>
