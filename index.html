@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My IT Inventory & Compliance Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- ================= PASSCODE LOCK SCREEN OVERLAY ================= -->
+    <div id="authOverlay" class="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900 px-4">
+        <div class="bg-white rounded-2xl shadow-2xl p-6 sm:p-8 w-full max-w-sm border border-slate-200 text-center">
+            <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-inner">
+                <i class="fas fa-lock text-2xl"></i>
+            </div>
+            <h2 class="text-xl font-bold text-slate-800">IT Inventory Access</h2>
+            <p class="text-xs text-slate-500 mt-1 mb-6">Enter PIN or Passcode to view assets</p>
+            
+            <form id="authForm" onsubmit="handleAuthSubmit(event)" class="space-y-4">
+                <div class="relative">
+                    <input 
+                        type="password" 
+                        id="passcodeInput" 
+                        maxlength="32" 
+                        autocomplete="current-password"
+                        placeholder="Enter Passcode" 
+                        class="w-full text-center tracking-widest text-lg py-2.5 px-4 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition" 
+                        autofocus 
+                        required
+                    >
+                </div>
+                
+                <p id="authErrorMsg" class="text-xs text-rose-500 font-medium hidden">
+                    <i class="fas fa-exclamation-circle mr-1"></i> Incorrect passcode. Try again.
+                </p>
+
+                <button type="submit" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-semibold py-2.5 px-4 rounded-xl shadow transition duration-150 flex items-center justify-center gap-2">
+                    <span>Unlock System</span>
+                    <i class="fas fa-arrow-right text-xs"></i>
+                </button>
+            </form>
+            <p class="text-[10px] text-gray-400 mt-4">Default PIN: admin1234</p>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="bg-slate-800 text-white p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 onclick="switchTab('assets')" class="text-xl font-bold cursor-pointer hover:text-gray-200 transition">
+                <i class="fas fa-shield-alt text-emerald-400 mr-2"></i> My IT Inventory
+            </h1>
+            <div class="flex items-center space-x-3">
+                <label class="cursor-pointer bg-blue-600 hover:bg-blue-700 px-3 py-1.5 rounded text-xs transition flex items-center">
+                    <i class="fas fa-file-import mr-1.5"></i> Import JSON
+                    <input type="file" id="importBtn" class="hidden" accept=".json">
+                </label>
+                <button id="exportBtn" class="bg-green-600 hover:bg-green-700 px-3 py-1.5 rounded text-xs transition flex items-center">
+                    <i class="fas fa-file-download mr-1.5"></i> Backup JSON
+                </button>
+                <button onclick="lockSystem()" class="bg-slate-700 hover:bg-rose-600 px-3 py-1.5 rounded text-xs transition flex items-center text-slate-300 hover:text-white" title="Lock System">
+                    <i class="fas fa-lock mr-1"></i> Lock
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tabs Navigation -->
+    <div class="bg-white shadow mb-6 border-b" id="tabs-nav">
+        <div class="container mx-auto px-6 flex space-x-6 overflow-x-auto">
+            <button onclick="switchTab('assets')" id="tab-assets" class="py-3 border-b-2 border-slate-800 text-slate-800 font-semibold focus:outline-none transition-colors whitespace-nowrap">
+                <i class="fas fa-laptop mr-1"></i> Computers
+            </button>
+            <button onclick="switchTab('accessories')" id="tab-accessories" class="py-3 border-b-2 border-transparent text-gray-500 hover:text-slate-800 font-semibold focus:outline-none transition-colors whitespace-nowrap">
+                <i class="fas fa-keyboard mr-1"></i> Accessories
+            </button>
+            <button onclick="switchTab('users')" id="tab-users" class="py-3 border-b-2 border-transparent text-gray-500 hover:text-slate-800 font-semibold focus:outline-none transition-colors whitespace-nowrap">
+                <i class="fas fa-users mr-1"></i> User Management
+            </button>
+            <button onclick="switchTab('logs')" id="tab-logs" class="py-3 border-b-2 border-transparent text-gray-500 hover:text-slate-800 font-semibold focus:outline-none transition-colors whitespace-nowrap">
+                <i class="fas fa-history mr-1"></i> Audit Logs
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto p-6 pt-0">
+        
+        <!-- ==================== ASSETS (COMPUTERS) VIEW ==================== -->
+        <div id="view-assets" class="block">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 mb-6">
+                <div class="bg-white p-4 rounded shadow border-l-4 border-blue-500">
+                    <h3 class="text-gray-500 text-xs font-semibold uppercase">Total Assets</h3>
+                    <p id="stat-total" class="text-2xl font-bold">0</p>
+                </div>
+                <div class="bg-white p-4 rounded shadow border-l-4 border-green-500">
+                    <h3 class="text-gray-500 text-xs font-semibold uppercase">Deployed</h3>
+                    <p id="stat-deployed" class="text-2xl font-bold">0</p>
+                </div>
+                <div class="bg-white p-4 rounded shadow border-l-4 border-yellow-500">
+                    <h3 class="text-gray-500 text-xs font-semibold uppercase">Ready</h3>
+                    <p id="stat-ready" class="text-2xl font-bold">0</p>
+                </div>
+                <div class="bg-white p-4 rounded shadow border-l-4 border-slate-700">
+                    <h3 class="text-gray-500 text-xs font-semibold uppercase"><i class="fab fa-apple mr-1"></i>macOS</h3>
+                    <p id="stat-mac" class="text-2xl font-bold">0</p>
+                </div>
+                <div class="bg-white p-4 rounded shadow border-l-4 border-blue-400">
+                    <h3 class="text-gray-500 text-xs font-semibold uppercase"><i class="fab fa-windows mr-1"></i>Windows</h3>
+                    <p id="stat-win" class="text-2xl font-bold">0</p>
+                </div>
+                <div class="bg-white p-4 rounded shadow border-l-4 border-emerald-500">
+                    <h3 class="text-gray-500 text-xs font-semibold uppercase flex items-center">
+                        <i class="fas fa-shield-alt text-emerald-500 mr-1"></i> Compliant
+                    </h3>
+                    <p id="stat-sec-compliant" class="text-2xl font-bold text-emerald-600">0</p>
+                </div>
+                <div class="bg-white p-4 rounded shadow border-l-4 border-rose-500">
+                    <h3 class="text-gray-500 text-xs font-semibold uppercase flex items-center">
+                        <i class="fas fa-exclamation-triangle text-rose-500 mr-1"></i> Non-Compliant
+                    </h3>
+                    <p id="stat-sec-noncompliant" class="text-2xl font-bold text-rose-600">0</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
+                <div class="flex items-center space-x-2">
+                    <h2 class="text-lg font-bold text-gray-700">Computers List</h2>
+                    <span class="text-xs text-gray-400 bg-gray-200 px-2 py-1 rounded hidden sm:inline">
+                        <i class="fas fa-mouse mr-1"></i>Double-click to view & audit
+                    </span>
+                </div>
+                
+                <div class="flex flex-wrap items-center gap-2">
+                    <div class="flex items-center space-x-1 bg-white border border-gray-300 rounded px-2 py-1 text-xs shadow-sm">
+                        <i class="fas fa-filter text-gray-400"></i>
+                        <select id="secFilterSelect" onchange="applySecurityFilter()" class="outline-none bg-transparent font-medium text-gray-700 cursor-pointer">
+                            <option value="ALL">All Computers</option>
+                            <option value="COMPLIANT">🛡️ Compliant</option>
+                            <option value="NON_COMPLIANT">⚠️ Non-Compliant</option>
+                            <option value="NOT_AUDITED">⚪ Not Audited</option>
+                        </select>
+                    </div>
+
+                    <button onclick="exportSecurityReportCSV()" class="bg-emerald-600 text-white px-3 py-1.5 rounded text-xs hover:bg-emerald-700 transition shadow flex items-center">
+                        <i class="fas fa-file-csv mr-1.5"></i> Export Security CSV
+                    </button>
+
+                    <button onclick="showAssetForm()" class="bg-slate-800 text-white px-3 py-1.5 rounded text-xs hover:bg-slate-700 transition shadow flex items-center">
+                        <i class="fas fa-plus mr-1"></i> Add Computer
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded shadow overflow-hidden">
+                <table class="min-w-full bg-white">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Asset Tag</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Type</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">OS</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Model</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Serial</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Status</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Assigned To</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Security</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600 text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="assetTableBody" class="divide-y divide-gray-200"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ==================== ASSET FORM (ADD/EDIT) ==================== -->
+        <div id="view-asset-form" class="hidden">
+            <div class="max-w-4xl mx-auto bg-white p-6 rounded shadow mt-4">
+                <div class="flex justify-between items-center mb-4 border-b pb-2">
+                    <h2 id="assetFormTitle" class="text-xl font-bold text-gray-700">Add Computer</h2>
+                    <button onclick="hideAssetForm()" class="text-gray-400 hover:text-gray-600"><i class="fas fa-times text-xl"></i></button>
+                </div>
+                <form id="addAssetForm" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <input type="hidden" id="editAssetIndex" value="">
+
+                    <!-- Section: General Info -->
+                    <div class="col-span-1 md:col-span-3 text-sm font-bold text-slate-700 border-b pb-1 mt-2">
+                        <i class="fas fa-info-circle mr-1"></i> General Information
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">Asset Tag *</label>
+                        <input type="text" id="assetTag" placeholder="e.g. AST-001" class="border p-2 rounded w-full text-sm" required>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">Device Type *</label>
+                        <select id="assetType" class="border p-2 rounded w-full text-sm" required>
+                            <option value="" disabled selected>Select Type</option>
+                            <option value="Laptop">Laptop</option>
+                            <option value="Desktop">Desktop</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">Operating System *</label>
+                        <select id="assetOS" class="border p-2 rounded w-full text-sm" required>
+                            <option value="" disabled selected>Select OS</option>
+                            <option value="macOS">macOS</option>
+                            <option value="Windows">Windows</option>
+                        </select>
+                    </div>
+                    <div class="col-span-1 md:col-span-2">
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">Model / Name *</label>
+                        <input type="text" id="assetModel" placeholder="e.g. MacBook Pro 14-inch M3 Pro" class="border p-2 rounded w-full text-sm" required>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">Serial Number *</label>
+                        <input type="text" id="assetSerial" placeholder="Serial Number" class="border p-2 rounded w-full text-sm" required>
+                    </div>
+
+                    <!-- Section: Hardware Specs -->
+                    <div class="col-span-1 md:col-span-3 text-sm font-bold text-slate-700 border-b pb-1 mt-3">
+                        <i class="fas fa-microchip mr-1"></i> Hardware Specifications
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">CPU / Processor</label>
+                        <input type="text" id="assetCpu" placeholder="e.g. Apple M3 Pro / Core i7" class="border p-2 rounded w-full text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">RAM</label>
+                        <input type="text" id="assetRam" placeholder="e.g. 16 GB / 32 GB" class="border p-2 rounded w-full text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">Storage / SSD</label>
+                        <input type="text" id="assetStorage" placeholder="e.g. 512 GB SSD" class="border p-2 rounded w-full text-sm">
+                    </div>
+
+                    <!-- Section: Network Info -->
+                    <div class="col-span-1 md:col-span-3 text-sm font-bold text-slate-700 border-b pb-1 mt-3">
+                        <i class="fas fa-network-wired mr-1"></i> Network Configuration
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">MAC Address</label>
+                        <input type="text" id="assetMac" placeholder="e.g. 3C:06:30:XX:XX:XX" class="border p-2 rounded w-full text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">IP Address</label>
+                        <input type="text" id="assetIp" placeholder="e.g. 192.168.1.100" class="border p-2 rounded w-full text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">Status</label>
+                        <select id="assetStatus" class="border p-2 rounded w-full text-sm">
+                            <option value="Ready to Deploy">Ready to Deploy</option>
+                            <option value="Deployed">Deployed</option>
+                            <option value="Broken">Broken</option>
+                        </select>
+                    </div>
+
+                    <!-- Section: Assignment & Dates -->
+                    <div class="col-span-1 md:col-span-3 text-sm font-bold text-slate-700 border-b pb-1 mt-3">
+                        <i class="fas fa-calendar-alt mr-1"></i> Assignment & Lifecycle
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">Assigned To (User)</label>
+                        <select id="assetAssignedTo" class="border p-2 rounded w-full text-sm"></select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">Purchase Date</label>
+                        <input type="date" id="assetPurchaseDate" class="border p-2 rounded w-full text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">Warranty Expires</label>
+                        <input type="date" id="assetWarrantyDate" class="border p-2 rounded w-full text-sm">
+                    </div>
+
+                    <!-- Notes -->
+                    <div class="col-span-1 md:col-span-3">
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">Notes / Remarks</label>
+                        <textarea id="assetNotes" rows="2" placeholder="Additional notes, accessories bundled, or conditions..." class="border p-2 rounded w-full text-sm"></textarea>
+                    </div>
+
+                    <div class="col-span-1 md:col-span-3 flex justify-end space-x-3 mt-4 border-t pt-4">
+                        <button type="button" onclick="hideAssetForm()" class="bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300 transition">Cancel</button>
+                        <button type="submit" class="bg-slate-800 text-white px-6 py-2 rounded hover:bg-slate-700 transition">
+                            <i class="fas fa-save mr-1"></i> Save Computer
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- ==================== ASSET DETAILS MODAL (DOUBLE CLICK VIEW) ==================== -->
+        <div id="assetDetailModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+            <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full p-6 overflow-y-auto max-h-[90vh]">
+                <div class="flex justify-between items-center border-b pb-3 mb-4">
+                    <h3 class="text-xl font-bold text-slate-800 flex items-center">
+                        <i class="fas fa-laptop-code text-blue-600 mr-2"></i>
+                        <span id="modal-tag"></span> - <span id="modal-model" class="text-gray-600 ml-1 font-normal text-lg"></span>
+                    </h3>
+                    <button onclick="closeDetailModal()" class="text-gray-400 hover:text-gray-600 text-xl font-bold">&times;</button>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4 text-sm">
+                    <div class="bg-gray-50 p-3 rounded">
+                        <span class="text-xs text-gray-500 font-semibold uppercase block">Device Type</span>
+                        <span id="modal-type" class="font-medium text-gray-800"></span>
+                    </div>
+                    <div class="bg-gray-50 p-3 rounded">
+                        <span class="text-xs text-gray-500 font-semibold uppercase block">Operating System</span>
+                        <span id="modal-os" class="font-medium text-gray-800"></span>
+                    </div>
+                    <div class="bg-gray-50 p-3 rounded">
+                        <span class="text-xs text-gray-500 font-semibold uppercase block">Serial Number</span>
+                        <span id="modal-serial" class="font-mono text-gray-800 font-medium"></span>
+                    </div>
+                    <div class="bg-gray-50 p-3 rounded">
+                        <span class="text-xs text-gray-500 font-semibold uppercase block">Status</span>
+                        <span id="modal-status"></span>
+                    </div>
+                    <div class="bg-gray-50 p-3 rounded col-span-2">
+                        <span class="text-xs text-gray-500 font-semibold uppercase block">Assigned User</span>
+                        <span id="modal-assigned" class="font-medium"></span>
+                    </div>
+
+                    <!-- Hardware Specs Section -->
+                    <div class="col-span-2 border-t pt-2 mt-2">
+                        <h4 class="text-xs font-bold text-slate-700 uppercase mb-2">Hardware Specifications</h4>
+                        <div class="grid grid-cols-3 gap-2">
+                            <div class="bg-slate-50 p-2 rounded">
+                                <span class="text-xs text-gray-400 block">CPU</span>
+                                <span id="modal-cpu" class="font-medium">-</span>
+                            </div>
+                            <div class="bg-slate-50 p-2 rounded">
+                                <span class="text-xs text-gray-400 block">RAM</span>
+                                <span id="modal-ram" class="font-medium">-</span>
+                            </div>
+                            <div class="bg-slate-50 p-2 rounded">
+                                <span class="text-xs text-gray-400 block">Storage</span>
+                                <span id="modal-storage" class="font-medium">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Network Configuration Section -->
+                    <div class="col-span-2 border-t pt-2 mt-2">
+                        <h4 class="text-xs font-bold text-slate-700 uppercase mb-2">Network Configuration</h4>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div class="bg-slate-50 p-2 rounded">
+                                <span class="text-xs text-gray-400 block">MAC Address</span>
+                                <span id="modal-mac" class="font-mono text-xs font-medium">-</span>
+                            </div>
+                            <div class="bg-slate-50 p-2 rounded">
+                                <span class="text-xs text-gray-400 block">IP Address</span>
+                                <span id="modal-ip" class="font-mono text-xs font-medium">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lifecycle Section -->
+                    <div class="col-span-2 border-t pt-2 mt-2">
+                        <h4 class="text-xs font-bold text-slate-700 uppercase mb-2">Lifecycle & Warranty</h4>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div class="bg-slate-50 p-2 rounded">
+                                <span class="text-xs text-gray-400 block">Purchase Date</span>
+                                <span id="modal-purchase" class="font-medium">-</span>
+                            </div>
+                            <div class="bg-slate-50 p-2 rounded">
+                                <span class="text-xs text-gray-400 block">Warranty Expires</span>
+                                <span id="modal-warranty" class="font-medium">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Remarks Section -->
+                    <div class="col-span-2 border-t pt-2 mt-2">
+                        <h4 class="text-xs font-bold text-slate-700 uppercase mb-1">Notes / Remarks</h4>
+                        <p id="modal-notes" class="text-gray-600 bg-gray-50 p-3 rounded italic">-</p>
+                    </div>
+
+                    <!-- ================= SECURITY COMPLIANCE SECTION ================= -->
+                    <div class="col-span-2 border-t pt-3 mt-2">
+                        <div class="flex items-center justify-between mb-3">
+                            <h4 class="text-xs font-bold text-slate-700 uppercase flex items-center">
+                                <i class="fas fa-shield-alt text-emerald-600 mr-1.5"></i> Security Compliance
+                            </h4>
+                            <span id="modal-sec-badge" class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-gray-200 text-gray-700">
+                                Not Audited
+                            </span>
+                        </div>
+
+                        <div class="bg-slate-50 p-3 rounded border border-slate-200 space-y-3">
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                                <label class="flex items-center space-x-2 text-xs font-medium text-slate-700 cursor-pointer">
+                                    <input type="checkbox" id="modal-sec-bitlocker" onchange="evaluateModalCompliance()" class="rounded text-blue-600">
+                                    <span>Disk Encryption</span>
+                                </label>
+                                <label class="flex items-center space-x-2 text-xs font-medium text-slate-700 cursor-pointer">
+                                    <input type="checkbox" id="modal-sec-usb" onchange="evaluateModalCompliance()" class="rounded text-blue-600">
+                                    <span>USB Blocked</span>
+                                </label>
+                                <label class="flex items-center space-x-2 text-xs font-medium text-slate-700 cursor-pointer">
+                                    <input type="checkbox" id="modal-sec-edr" onchange="evaluateModalCompliance()" class="rounded text-blue-600">
+                                    <span>EDR / Antivirus Active</span>
+                                </label>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                                <div>
+                                    <label class="block text-[11px] font-semibold text-gray-500 mb-1">OS Build / Version</label>
+                                    <input type="text" id="modal-sec-osbuild" placeholder="e.g. 23H2 / macOS 15.1" class="w-full text-xs p-1.5 border rounded bg-white">
+                                </div>
+                                <div>
+                                    <label class="block text-[11px] font-semibold text-gray-500 mb-1">Last Patch Date</label>
+                                    <input type="date" id="modal-sec-patchdate" onchange="evaluateModalCompliance()" class="w-full text-xs p-1 border rounded bg-white">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ================= DEVICE AUDIT HISTORY LOG ================= -->
+                    <div class="col-span-2 border-t pt-3 mt-2">
+                        <h4 class="text-xs font-bold text-slate-700 uppercase mb-2 flex items-center">
+                            <i class="fas fa-history text-blue-600 mr-1.5"></i> Audit History (This Computer)
+                        </h4>
+                        <div id="modal-asset-logs" class="max-h-36 overflow-y-auto space-y-1.5 text-xs bg-gray-50 p-2.5 rounded border border-gray-200">
+                            <!-- Logs will be populated here -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end gap-2 mt-6 border-t pt-3">
+                    <button onclick="closeDetailModal()" class="bg-gray-200 text-gray-700 px-4 py-2 rounded text-sm hover:bg-gray-300">Close</button>
+                    <button onclick="saveModalSecurity()" class="bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700 shadow flex items-center">
+                        <i class="fas fa-save mr-1.5"></i> Save Security Audit
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== ACCESSORIES VIEW ==================== -->
+        <div id="view-accessories" class="hidden">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-lg font-bold text-gray-700">Accessories List</h2>
+                <button onclick="showAccessoryForm()" class="bg-slate-800 text-white px-4 py-2 rounded hover:bg-slate-700 transition shadow">
+                    <i class="fas fa-plus mr-1"></i> Add Accessory
+                </button>
+            </div>
+
+            <div class="bg-white rounded shadow overflow-hidden">
+                <table class="min-w-full bg-white">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">ID</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Type</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">S/N</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Description / Model</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Assigned To</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600 text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="accessoryTableBody" class="divide-y divide-gray-200"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ==================== ACCESSORY FORM (ADD/EDIT) ==================== -->
+        <div id="view-accessory-form" class="hidden">
+            <div class="max-w-2xl mx-auto bg-white p-6 rounded shadow mt-4">
+                <div class="flex justify-between items-center mb-4 border-b pb-2">
+                    <h2 id="accessoryFormTitle" class="text-xl font-bold text-gray-700">Add Accessory</h2>
+                    <button onclick="hideAccessoryForm()" class="text-gray-400 hover:text-gray-600"><i class="fas fa-times text-xl"></i></button>
+                </div>
+                <form id="addAccessoryForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input type="hidden" id="editAccessoryIndex" value="">
+                    <div>
+                        <label class="block text-sm text-gray-600 mb-1">Accessory ID</label>
+                        <input type="text" id="accId" placeholder="e.g. ACC-001" class="border p-2 rounded w-full" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-600 mb-1">Type</label>
+                        <select id="accType" class="border p-2 rounded w-full" required>
+                            <option value="" disabled selected>Select Type</option>
+                            <option value="iPhone">iPhone</option>
+                            <option value="iPad">iPad</option>
+                            <option value="Monitor">Monitor</option>
+                            <option value="Keyboard">Keyboard</option>
+                            <option value="Mouse">Mouse</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="col-span-1 md:col-span-2">
+                        <label class="block text-sm text-gray-600 mb-1">Serial Number (S/N)</label>
+                        <input type="text" id="accSerial" placeholder="Serial Number (Optional)" class="border p-2 rounded w-full">
+                    </div>
+                    <div class="col-span-1 md:col-span-2">
+                        <label class="block text-sm text-gray-600 mb-1">Description / Model</label>
+                        <input type="text" id="accDesc" placeholder="e.g. Dell 24 Inch Monitor / iPhone 15 Pro" class="border p-2 rounded w-full" required>
+                    </div>
+                    <div class="col-span-1 md:col-span-2">
+                        <label class="block text-sm text-gray-600 mb-1">Assigned To (User)</label>
+                        <select id="accAssignedTo" class="border p-2 rounded w-full"></select>
+                    </div>
+                    <div class="col-span-1 md:col-span-2 flex justify-end space-x-3 mt-4 border-t pt-4">
+                        <button type="button" onclick="hideAccessoryForm()" class="bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300 transition">Cancel</button>
+                        <button type="submit" class="bg-slate-800 text-white px-6 py-2 rounded hover:bg-slate-700 transition">
+                            <i class="fas fa-save mr-1"></i> Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- ==================== USERS VIEW ==================== -->
+        <div id="view-users" class="hidden">
+            <div class="bg-white p-6 rounded shadow mb-6">
+                <h2 class="text-lg font-semibold mb-4 border-b pb-2">Add New User</h2>
+                <form id="addUserForm" class="grid grid-cols-1 md:grid-cols-6 gap-4">
+                    <input type="text" id="empId" placeholder="EMP_ID (e.g. E001)" class="border p-2 rounded" required>
+                    <input type="text" id="firstName" placeholder="First Name" class="border p-2 rounded" required>
+                    <input type="text" id="lastName" placeholder="Last Name" class="border p-2 rounded" required>
+                    <select id="dept" class="border p-2 rounded" required>
+                        <option value="" disabled selected>Select Department</option>
+                        <option value="IT Security">IT Security</option>
+                        <option value="Operations">Operations</option>
+                        <option value="Compliance">Compliance</option>
+                        <option value="HR">HR</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Management">Management</option>
+                    </select>
+                    <input type="email" id="email" placeholder="Email Address" class="border p-2 rounded" required>
+                    <button type="submit" class="bg-slate-800 text-white rounded hover:bg-slate-700 transition">
+                        <i class="fas fa-user-plus"></i> Add User
+                    </button>
+                </form>
+            </div>
+            <div class="bg-white rounded shadow overflow-hidden">
+                <table class="min-w-full bg-white">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">EMP_ID</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Name</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Department</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Email</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600 text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userTableBody" class="divide-y divide-gray-200"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ==================== AUDIT LOGS VIEW ==================== -->
+        <div id="view-logs" class="hidden">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                <div class="flex items-center space-x-2">
+                    <h2 class="text-lg font-bold text-gray-700">Audit & Security Activity Log</h2>
+                    <span class="text-xs text-gray-400 bg-gray-200 px-2 py-1 rounded">ISO 27001 Trackable</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <button onclick="clearAllLogs()" class="bg-gray-200 hover:bg-red-100 hover:text-red-700 text-gray-600 px-3 py-1.5 rounded text-xs transition shadow-sm">
+                        <i class="fas fa-trash-alt mr-1"></i> Clear Logs
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded shadow overflow-hidden">
+                <table class="min-w-full bg-white">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Timestamp</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Category</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Target Asset / Item</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Action / Details</th>
+                        </tr>
+                    </thead>
+                    <tbody id="logTableBody" class="divide-y divide-gray-200"></tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
