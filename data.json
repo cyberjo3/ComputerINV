@@ -1,21 +1,87 @@
 {
-  "assets": [],
-  "accessories": [],
+  "assets": [
+    {
+      "tag": "AST-001",
+      "type": "Laptop",
+      "os": "macOS",
+      "model": "MacBook Pro 14-inch M3",
+      "serial": "C02XYZ123456",
+      "cpu": "Apple M3",
+      "ram": "16 GB",
+      "storage": "512 GB SSD",
+      "mac": "3C:06:30:AA:BB:CC",
+      "ip": "192.168.1.105",
+      "status": "Deployed",
+      "assignedTo": "EMP-001",
+      "purchaseDate": "2026-01-10",
+      "warrantyDate": "2027-01-10",
+      "notes": "เครื่องประจำตำแหน่ง IT Security",
+      "security": {
+        "diskEncryption": true,
+        "usbBlocked": true,
+        "edrActive": true,
+        "osBuild": "macOS 15.1",
+        "lastPatchDate": "2026-11-01",
+        "isCompliant": true,
+        "lastAuditedAt": "2026-11-15T03:00:00.000Z"
+      },
+      "auditHistory": []
+    }
+  ],
+  "accessories": [
+    {
+      "id": "ACC-001",
+      "type": "Monitor",
+      "serial": "CN-0M345-XXXXX",
+      "desc": "Dell UltraSharp 27-inch 4K",
+      "assignedTo": "EMP-001"
+    },
+    {
+      "id": "B002",
+      "type": "iPad",
+      "location": "IT",
+      "serial": "asdswww",
+      "desc": "Ipad",
+      "assignedTo": ""
+    },
+    {
+      "id": "B002",
+      "type": "iPad",
+      "location": "Safebox",
+      "serial": "iadmin",
+      "desc": "ipad",
+      "assignedTo": ""
+    }
+  ],
   "users": [],
   "logs": [
     {
-      "id": "LOG-1794840612657",
-      "timestamp": "2026-11-16T14:50:12.657Z",
-      "category": "ASSET_MGMT",
-      "target": "AST-001",
-      "details": "Deleted computer: MacBook Pro 14-inch M3 (S/N: C02XYZ123456)"
+      "id": "LOG-1794841506879",
+      "timestamp": "2026-11-16T15:05:06.879Z",
+      "category": "ACCESSORY_MGMT",
+      "target": "B002",
+      "details": "Added accessory: iPad - ipad (Loc: Safebox)"
     },
     {
-      "id": "LOG-1794840607091",
-      "timestamp": "2026-11-16T14:50:07.091Z",
+      "id": "LOG-1794841482167",
+      "timestamp": "2026-11-16T15:04:42.167Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session authenticated via Passcode"
+    },
+    {
+      "id": "LOG-1794841287557",
+      "timestamp": "2026-11-16T15:01:27.557Z",
       "category": "ACCESSORY_MGMT",
-      "target": "ACC-001",
-      "details": "Deleted accessory: Monitor - Dell UltraSharp 27-inch 4K"
+      "target": "B002",
+      "details": "Added accessory: iPad - Ipad (Loc: IT)"
+    },
+    {
+      "id": "LOG-1794841260941",
+      "timestamp": "2026-11-16T15:01:00.941Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session authenticated via Passcode"
     },
     {
       "id": "LOG-1794840603147",
