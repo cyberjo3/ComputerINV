@@ -4,9 +4,10 @@
     {
       "id": "ACC-001",
       "type": "Monitor",
+      "location": "IT",
       "serial": "CN-0M345-XXXXX",
       "desc": "Dell UltraSharp 27-inch 4K",
-      "assignedTo": "EMP-001"
+      "assignedTo": ""
     }
   ],
   "users": [
@@ -19,6 +20,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1794839053348",
+      "timestamp": "2026-11-16T14:24:13.348Z",
+      "category": "ACCESSORY_MGMT",
+      "target": "ACC-001",
+      "details": "Updated accessory: Monitor (Loc: IT, Assigned to: Unassigned)"
+    },
     {
       "id": "LOG-1794795201686",
       "timestamp": "2026-11-16T02:13:21.686Z",
