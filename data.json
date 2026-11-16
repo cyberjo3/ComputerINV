@@ -8,6 +8,14 @@
       "serial": "CN-0M345-XXXXX",
       "desc": "Dell UltraSharp 27-inch 4K",
       "assignedTo": ""
+    },
+    {
+      "id": "Iphone02",
+      "type": "iPhone",
+      "location": "IT",
+      "serial": "ddddd",
+      "desc": "Iphone15 pro",
+      "assignedTo": "R69003"
     }
   ],
   "users": [
@@ -31,6 +39,20 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1794839427663",
+      "timestamp": "2026-11-16T14:30:27.663Z",
+      "category": "SYSTEM",
+      "target": "DATABASE",
+      "details": "Imported JSON database backup"
+    },
+    {
+      "id": "LOG-1794839151665",
+      "timestamp": "2026-11-16T14:25:51.665Z",
+      "category": "ACCESSORY_MGMT",
+      "target": "Iphone02",
+      "details": "Added accessory: iPhone - Iphone15 pro (Loc: IT)"
+    },
     {
       "id": "LOG-1794839116041",
       "timestamp": "2026-11-16T14:25:16.041Z",
