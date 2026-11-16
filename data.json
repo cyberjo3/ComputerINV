@@ -53,8 +53,41 @@
       "assignedTo": ""
     }
   ],
-  "users": [],
+  "users": [
+    {
+      "empId": "RK001",
+      "firstName": "aaa",
+      "lastName": "aaaa",
+      "dept": "IT Security",
+      "employmentType": "Permanent",
+      "status": "Active",
+      "startDate": "2026-05-14",
+      "resignDate": "",
+      "email": "aaa@rak.com"
+    }
+  ],
   "logs": [
+    {
+      "id": "LOG-1794841551697",
+      "timestamp": "2026-11-16T15:05:51.697Z",
+      "category": "USER_MGMT",
+      "target": "RK001",
+      "details": "Added employee: aaa aaaa (IT Security | Active)"
+    },
+    {
+      "id": "LOG-1794841520147",
+      "timestamp": "2026-11-16T15:05:20.147Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session authenticated via Passcode"
+    },
+    {
+      "id": "LOG-1794841515824",
+      "timestamp": "2026-11-16T15:05:15.824Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session logged out and data synchronized"
+    },
     {
       "id": "LOG-1794841506879",
       "timestamp": "2026-11-16T15:05:06.879Z",
