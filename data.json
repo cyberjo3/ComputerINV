@@ -26,25 +26,6 @@
         "lastAuditedAt": "2026-11-15T03:00:00.000Z"
       },
       "auditHistory": []
-    },
-    {
-      "tag": "q222",
-      "type": "Desktop",
-      "os": "Windows",
-      "model": "22222",
-      "serial": "22222",
-      "cpu": "I9",
-      "ram": "32",
-      "storage": "1 tb",
-      "mac": "2222",
-      "ip": "2222",
-      "status": "Ready to Deploy",
-      "assignedTo": "",
-      "purchaseDate": "",
-      "warrantyDate": "",
-      "notes": "",
-      "security": null,
-      "auditHistory": []
     }
   ],
   "accessories": [
@@ -56,25 +37,19 @@
       "assignedTo": "EMP-001"
     }
   ],
-  "users": [],
+  "users": [
+    {
+      "empId": "EMP-001",
+      "firstName": "Kanshi",
+      "lastName": "K.",
+      "dept": "IT Security",
+      "email": "kanshi@company.com"
+    }
+  ],
   "logs": [
     {
-      "id": "LOG-1794840282926",
-      "timestamp": "2026-11-16T14:44:42.926Z",
-      "category": "USER_MGMT",
-      "target": "EMP-001",
-      "details": "Deleted employee: Kanshi K."
-    },
-    {
-      "id": "LOG-1794714144137",
-      "timestamp": "2026-11-15T03:42:24.137Z",
-      "category": "ASSET_MGMT",
-      "target": "q222",
-      "details": "Added computer: 22222 (22222)"
-    },
-    {
-      "id": "LOG-1794714052127",
-      "timestamp": "2026-11-15T03:40:52.127Z",
+      "id": "LOG-1794840351241",
+      "timestamp": "2026-11-16T14:45:51.241Z",
       "category": "SYSTEM",
       "target": "DATABASE",
       "details": "Imported JSON database backup"
