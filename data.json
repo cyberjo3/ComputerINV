@@ -1,5 +1,33 @@
 {
-  "assets": [],
+  "assets": [
+    {
+      "tag": "AST-001",
+      "type": "Laptop",
+      "os": "macOS",
+      "model": "MacBook Pro 14-inch M3",
+      "serial": "C02XYZ123456",
+      "cpu": "Apple M3",
+      "ram": "16 GB",
+      "storage": "512 GB SSD",
+      "mac": "3C:06:30:AA:BB:CC",
+      "ip": "192.168.1.105",
+      "status": "Deployed",
+      "assignedTo": "EMP-001",
+      "purchaseDate": "2026-01-10",
+      "warrantyDate": "2027-01-10",
+      "notes": "เครื่องประจำตำแหน่ง IT Security",
+      "security": {
+        "diskEncryption": true,
+        "usbBlocked": true,
+        "edrActive": true,
+        "osBuild": "macOS 15.1",
+        "lastPatchDate": "2026-11-01",
+        "isCompliant": true,
+        "lastAuditedAt": "2026-11-15T03:00:00.000Z"
+      },
+      "auditHistory": []
+    }
+  ],
   "accessories": [
     {
       "id": "ACC-001",
@@ -9,22 +37,16 @@
       "assignedTo": "EMP-001"
     }
   ],
-  "users": [],
+  "users": [
+    {
+      "empId": "EMP-001",
+      "firstName": "Kanshi",
+      "lastName": "K.",
+      "dept": "IT Security",
+      "email": "kanshi@company.com"
+    }
+  ],
   "logs": [
-    {
-      "id": "LOG-1794794665595",
-      "timestamp": "2026-11-16T02:04:25.595Z",
-      "category": "USER_MGMT",
-      "target": "EMP-001",
-      "details": "Deleted employee: Kanshi K."
-    },
-    {
-      "id": "LOG-1794794661065",
-      "timestamp": "2026-11-16T02:04:21.065Z",
-      "category": "ASSET_MGMT",
-      "target": "AST-001",
-      "details": "Deleted computer: MacBook Pro 14-inch M3 (S/N: C02XYZ123456)"
-    },
     {
       "id": "LOG-1794794657758",
       "timestamp": "2026-11-16T02:04:17.758Z",
