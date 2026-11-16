@@ -4,10 +4,9 @@
     {
       "id": "ACC-001",
       "type": "Monitor",
-      "location": "IT",
       "serial": "CN-0M345-XXXXX",
       "desc": "Dell UltraSharp 27-inch 4K",
-      "assignedTo": ""
+      "assignedTo": "EMP-001"
     }
   ],
   "users": [
@@ -17,26 +16,57 @@
       "lastName": "Kaewsathit",
       "dept": "Management",
       "email": "bunnapat@rakkardigital.com"
-    },
-    {
-      "empId": "R69006",
-      "firstName": "Chotkanapat",
-      "lastName": "ddd",
-      "dept": "DevOps",
-      "employmentType": "Temporary",
-      "status": "Active",
-      "startDate": "2026-05-01",
-      "resignDate": "",
-      "email": "chotkanapat@rakkardigital.com"
     }
   ],
   "logs": [
     {
-      "id": "LOG-1794839116041",
-      "timestamp": "2026-11-16T14:25:16.041Z",
+      "id": "LOG-1794795201686",
+      "timestamp": "2026-11-16T02:13:21.686Z",
       "category": "USER_MGMT",
-      "target": "R69006",
-      "details": "Added employee: Chotkanapat ddd (DevOps | Active)"
+      "target": "R69003",
+      "details": "Added employee: Bunnapat Kaewsathit (Management)"
+    },
+    {
+      "id": "LOG-1794794665595",
+      "timestamp": "2026-11-16T02:04:25.595Z",
+      "category": "USER_MGMT",
+      "target": "EMP-001",
+      "details": "Deleted employee: Kanshi K."
+    },
+    {
+      "id": "LOG-1794794661065",
+      "timestamp": "2026-11-16T02:04:21.065Z",
+      "category": "ASSET_MGMT",
+      "target": "AST-001",
+      "details": "Deleted computer: MacBook Pro 14-inch M3 (S/N: C02XYZ123456)"
+    },
+    {
+      "id": "LOG-1794794657758",
+      "timestamp": "2026-11-16T02:04:17.758Z",
+      "category": "ASSET_MGMT",
+      "target": "q222",
+      "details": "Deleted computer: 22222 (S/N: 22222)"
+    },
+    {
+      "id": "LOG-1794715475120",
+      "timestamp": "2026-11-15T04:04:35.120Z",
+      "category": "SECURITY_AUDIT",
+      "target": "q222",
+      "details": "Audit saved (COMPLIANT) - BitLocker:ON | USB:BLOCK | EDR:ON | Patch:2026-11-29"
+    },
+    {
+      "id": "LOG-1794714144137",
+      "timestamp": "2026-11-15T03:42:24.137Z",
+      "category": "ASSET_MGMT",
+      "target": "q222",
+      "details": "Added computer: 22222 (22222)"
+    },
+    {
+      "id": "LOG-1794714052127",
+      "timestamp": "2026-11-15T03:40:52.127Z",
+      "category": "SYSTEM",
+      "target": "DATABASE",
+      "details": "Imported JSON database backup"
     }
   ]
 }
