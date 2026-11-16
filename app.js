@@ -43,6 +43,42 @@ function handleAuthSubmit(event) {
     }
 }
 
+// ================= LOGOUT & AUTO-SYNC SYSTEM =================
+async function handleLogout() {
+    const logoutBtn = document.getElementById('logoutBtn');
+    const originalText = logoutBtn ? logoutBtn.innerHTML : '';
+    
+    // เปลี่ยนปุ่มเป็นสถานะกำลัง Sync ข้อมูล
+    if (logoutBtn) {
+        logoutBtn.disabled = true;
+        logoutBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-1.5"></i> Syncing...';
+    }
+
+    try {
+        // บันทึกและ Push ข้อมูลล่าสุดขึ้น GitHub ให้เสร็จสิ้น
+        if (typeof pushDataToGitHub === 'function') {
+            await pushDataToGitHub();
+        }
+    } catch (err) {
+        console.error('Logout sync error:', err);
+    } finally {
+        if (logoutBtn) {
+            logoutBtn.disabled = false;
+            logoutBtn.innerHTML = originalText;
+        }
+        
+        // เคลียร์ Session แล้วเด้งกลับหน้าล็อกอิน
+        sessionStorage.removeItem('it_inv_auth');
+        sessionStorage.removeItem('gh_file_sha');
+        
+        if (typeof addAuditLog === 'function') {
+            addAuditLog('SECURITY', 'SYSTEM', 'Session logged out and data synchronized');
+        }
+        
+        checkAuthStatus();
+    }
+}
+
 function lockSystem() {
     sessionStorage.removeItem('it_inv_auth');
     checkAuthStatus();
@@ -161,7 +197,7 @@ function updateApp() {
     renderLogsTable();
     updateStats();
     
-    // Auto-sync ข้อมูลขึ้น GitHub อัตโนมัติทุกครั้งที่มีการอัปเดต
+    // Auto-sync ข้อมูลขึ้น GitHub
     pushDataToGitHub();
 }
 
@@ -902,7 +938,8 @@ async function pullDataFromGitHub(notify = false) {
     const token = getGitHubToken();
     if (!token) return;
 
-    const url = `https://api.github.com/repos/${GH_CONFIG.repo}/contents/${GH_CONFIG.path}?ref=${GH_CONFIG.branch}`;
+    // เติม &_t=${Date.now()} ป้องกันแคชบนอุปกรณ์ Safari / iPad
+    const url = `https://api.github.com/repos/${GH_CONFIG.repo}/contents/${GH_CONFIG.path}?ref=${GH_CONFIG.branch}&_t=${Date.now()}`;
     
     try {
         const res = await fetch(url, {
@@ -940,13 +977,13 @@ async function pullDataFromGitHub(notify = false) {
 
 async function pushDataToGitHub() {
     const token = getGitHubToken();
-    if (!token) return;
+    if (!token) return false;
 
     const url = `https://api.github.com/repos/${GH_CONFIG.repo}/contents/${GH_CONFIG.path}`;
     
     let sha = sessionStorage.getItem('gh_file_sha');
     try {
-        const checkRes = await fetch(`${url}?ref=${GH_CONFIG.branch}`, {
+        const checkRes = await fetch(`${url}?ref=${GH_CONFIG.branch}&_t=${Date.now()}`, {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         if (checkRes.ok) {
@@ -980,11 +1017,14 @@ async function pushDataToGitHub() {
             const resData = await res.json();
             sessionStorage.setItem('gh_file_sha', resData.content.sha);
             console.log('GitHub Auto-sync: Committed successfully.');
+            return true;
         } else {
             console.warn('GitHub Auto-sync failed:', await res.text());
+            return false;
         }
     } catch (err) {
         console.error('GitHub Auto-sync Network Error:', err);
+        return false;
     }
 }
 
