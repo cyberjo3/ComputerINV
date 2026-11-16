@@ -68,6 +68,13 @@
   ],
   "logs": [
     {
+      "id": "LOG-1794841576204",
+      "timestamp": "2026-11-16T15:06:16.204Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session authenticated via Passcode"
+    },
+    {
       "id": "LOG-1794841551697",
       "timestamp": "2026-11-16T15:05:51.697Z",
       "category": "USER_MGMT",
