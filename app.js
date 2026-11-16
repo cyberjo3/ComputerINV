@@ -12,7 +12,7 @@ function checkAuthStatus() {
         if (overlay) overlay.classList.remove('hidden');
         if (input) {
             input.value = '';
-            input.focus();
+            setTimeout(() => input.focus(), 100);
         }
     }
 }
@@ -47,8 +47,6 @@ function lockSystem() {
     sessionStorage.removeItem('it_inv_auth');
     checkAuthStatus();
 }
-
-checkAuthStatus();
 
 // ================= DATA & APPLICATION STATE =================
 let db = JSON.parse(localStorage.getItem('it-inventory-db')) || { assets: [], accessories: [], users: [], logs: [] };
@@ -91,8 +89,11 @@ const DOM = {
     accessoryForm: document.getElementById('addAccessoryForm'),
     accessoryTableBody: document.getElementById('accessoryTableBody'),
 
+    userFormTitle: document.getElementById('userFormTitle'),
     userForm: document.getElementById('addUserForm'),
     userTableBody: document.getElementById('userTableBody'),
+    cancelEditUserBtn: document.getElementById('cancelEditUserBtn'),
+    saveUserBtn: document.getElementById('saveUserBtn'),
 
     logTableBody: document.getElementById('logTableBody'),
 
@@ -100,6 +101,7 @@ const DOM = {
     importBtn: document.getElementById('importBtn')
 };
 
+// ================= Logger Helper =================
 function addAuditLog(category, target, details) {
     if (!db.logs) db.logs = [];
     const logEntry = {
@@ -115,13 +117,14 @@ function addAuditLog(category, target, details) {
     }
 }
 
+// ================= Tab Switching Logic =================
 window.switchTab = (tabName) => {
     DOM.viewAssetForm.classList.add('hidden');
     DOM.viewAccessoryForm.classList.add('hidden');
     closeDetailModal();
     
-    const inactiveClass = "py-3 border-b-2 border-transparent text-gray-500 hover:text-slate-800 font-semibold focus:outline-none transition-colors whitespace-nowrap";
-    const activeClass = "py-3 border-b-2 border-slate-800 text-slate-800 font-semibold focus:outline-none transition-colors whitespace-nowrap";
+    const inactiveClass = "py-3.5 border-b-2 border-transparent text-gray-500 hover:text-[#0b1f3a] font-semibold focus:outline-none transition-colors whitespace-nowrap text-sm";
+    const activeClass = "py-3.5 border-b-2 border-[#0b1f3a] text-[#0b1f3a] font-bold focus:outline-none transition-colors whitespace-nowrap text-sm";
 
     DOM.tabAssets.className = inactiveClass;
     DOM.tabAccessories.className = inactiveClass;
@@ -149,6 +152,7 @@ window.switchTab = (tabName) => {
     }
 };
 
+// ================= Core Logic =================
 function updateApp() {
     localStorage.setItem('it-inventory-db', JSON.stringify(db));
     renderAssetsTable();
@@ -157,34 +161,43 @@ function updateApp() {
     renderLogsTable();
     updateStats();
     
+    // Auto-sync ข้อมูลขึ้น GitHub อัตโนมัติทุกครั้งที่มีการอัปเดต
     pushDataToGitHub();
 }
 
+// ================= Helpers =================
 function populateUserDropdown(selectElementId, selectedValue = "") {
     const selectEl = document.getElementById(selectElementId);
     if (!selectEl) return;
     selectEl.innerHTML = '<option value="">-- Unassigned --</option>';
     db.users.forEach(user => {
-        selectEl.innerHTML += `<option value="${user.empId}">${user.firstName} ${user.lastName} (${user.empId})</option>`;
+        const statusWarning = (user.status === 'Resigned') ? ' ⚠️ (Resigned)' : '';
+        const empTypeBadge = user.employmentType ? ` [${user.employmentType}]` : '';
+        selectEl.innerHTML += `<option value="${user.empId}">${user.firstName} ${user.lastName} (${user.empId})${empTypeBadge}${statusWarning}</option>`;
     });
     selectEl.value = selectedValue;
 }
 
 function getAssignedUserName(empId) {
     let user = db.users.find(u => u.empId === empId);
-    return user ? `<span class="text-blue-600 font-semibold">${user.firstName} (${empId})</span>` : '<span class="text-gray-400 italic">Unassigned</span>';
+    if (!user) return '<span class="text-gray-400 italic">Unassigned</span>';
+    const isResigned = user.status === 'Resigned';
+    return isResigned 
+        ? `<span class="text-rose-600 font-medium line-through">${user.firstName} (${empId})</span> <span class="text-[10px] bg-rose-100 text-rose-700 px-1.5 py-0.5 rounded font-semibold">Resigned</span>`
+        : `<span class="text-blue-700 font-semibold">${user.firstName} (${empId})</span>`;
 }
 
 function getSecurityBadge(sec) {
     if (!sec) {
-        return `<span class="px-2 py-0.5 rounded text-xs font-semibold bg-gray-100 text-gray-600">Not Audited</span>`;
+        return `<span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-600">Not Audited</span>`;
     }
     if (sec.isCompliant) {
-        return `<span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 text-emerald-800"><i class="fas fa-check-circle mr-1 text-emerald-600"></i>Compliant</span>`;
+        return `<span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800"><i class="fas fa-check-circle mr-1 text-emerald-600"></i>Compliant</span>`;
     }
-    return `<span class="px-2 py-0.5 rounded text-xs font-semibold bg-rose-100 text-rose-800"><i class="fas fa-exclamation-triangle mr-1 text-rose-600"></i>Non-Compliant</span>`;
+    return `<span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-rose-100 text-rose-800"><i class="fas fa-exclamation-triangle mr-1 text-rose-600"></i>Non-Compliant</span>`;
 }
 
+// ================= Assets (Computers) =================
 window.showAssetForm = (editIndex = null) => {
     DOM.viewAssets.classList.add('hidden');
     DOM.viewAssetForm.classList.remove('hidden');
@@ -247,7 +260,7 @@ function renderAssetsTable() {
     if (filteredAssets.length === 0) {
         DOM.assetTableBody.innerHTML = `
             <tr>
-                <td colspan="9" class="py-6 text-center text-sm text-gray-400">
+                <td colspan="9" class="py-8 text-center text-sm text-gray-400">
                     No computers found matching the current filter.
                 </td>
             </tr>
@@ -256,22 +269,22 @@ function renderAssetsTable() {
     }
 
     filteredAssets.forEach(({ asset, originalIndex }) => {
-        let statusColor = asset.status === 'Deployed' ? 'bg-green-100 text-green-800' : 
-                          asset.status === 'Ready to Deploy' ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800';
+        let statusColor = asset.status === 'Deployed' ? 'bg-emerald-100 text-emerald-800' : 
+                          asset.status === 'Ready to Deploy' ? 'bg-amber-100 text-amber-800' : 'bg-rose-100 text-rose-800';
         
         DOM.assetTableBody.innerHTML += `
-            <tr class="hover:bg-blue-50 transition cursor-pointer" ondblclick="openDetailModal(${originalIndex})" title="Double-click to view specs & security">
-                <td class="py-3 px-4 font-mono text-sm font-semibold">${asset.tag}</td>
-                <td class="py-3 px-4 text-sm">${asset.type || '-'}</td>
-                <td class="py-3 px-4 text-sm">${asset.os || '-'}</td>
-                <td class="py-3 px-4">${asset.model}</td>
-                <td class="py-3 px-4 font-mono text-sm">${asset.serial}</td>
-                <td class="py-3 px-4"><span class="px-2 py-1 rounded text-xs font-semibold ${statusColor}">${asset.status}</span></td>
+            <tr class="hover:bg-blue-50/50 transition cursor-pointer" ondblclick="openDetailModal(${originalIndex})" title="Double-click to view specs & security">
+                <td class="py-3 px-4 font-mono text-sm font-semibold text-[#0b1f3a]">${asset.tag}</td>
+                <td class="py-3 px-4 text-sm text-gray-600">${asset.type || '-'}</td>
+                <td class="py-3 px-4 text-sm text-gray-600">${asset.os || '-'}</td>
+                <td class="py-3 px-4 font-medium text-slate-800">${asset.model}</td>
+                <td class="py-3 px-4 font-mono text-sm text-gray-500">${asset.serial}</td>
+                <td class="py-3 px-4"><span class="px-2.5 py-0.5 rounded-full text-xs font-semibold ${statusColor}">${asset.status}</span></td>
                 <td class="py-3 px-4 text-sm">${getAssignedUserName(asset.assignedTo)}</td>
                 <td class="py-3 px-4">${getSecurityBadge(asset.security)}</td>
                 <td class="py-3 px-4 text-center space-x-2" onclick="event.stopPropagation()">
-                    <button onclick="showAssetForm(${originalIndex})" class="text-blue-500 hover:text-blue-700" title="Edit"><i class="fas fa-edit"></i></button>
-                    <button onclick="deleteAsset(${originalIndex})" class="text-red-500 hover:text-red-700" title="Delete"><i class="fas fa-trash"></i></button>
+                    <button onclick="showAssetForm(${originalIndex})" class="text-blue-600 hover:text-blue-800" title="Edit"><i class="fas fa-edit"></i></button>
+                    <button onclick="deleteAsset(${originalIndex})" class="text-rose-500 hover:text-rose-700" title="Delete"><i class="fas fa-trash"></i></button>
                 </td>
             </tr>
         `;
@@ -323,7 +336,7 @@ DOM.assetForm.addEventListener('submit', (e) => {
         addAuditLog('ASSET_MGMT', assetData.tag, `Added computer: ${assetData.model} (${assetData.serial})`);
     } else {
         db.assets[editIndex] = assetData;
-        addAuditLog('ASSET_MGMT', assetData.tag, `Updated computer: ${assetData.model}`);
+        addAuditLog('ASSET_MGMT', assetData.tag, `Updated specifications or assignment (Assigned to: ${assetData.assignedTo || 'Unassigned'})`);
     }
     hideAssetForm();
     updateApp();
@@ -338,6 +351,7 @@ window.deleteAsset = (index) => {
     }
 };
 
+// ================= Asset Detail Modal & Security Compliance =================
 window.openDetailModal = (index) => {
     currentDetailIndex = index;
     const a = db.assets[index];
@@ -349,9 +363,9 @@ window.openDetailModal = (index) => {
     document.getElementById('modal-os').innerText = a.os || '-';
     document.getElementById('modal-serial').innerText = a.serial || '-';
     
-    let statusColor = a.status === 'Deployed' ? 'bg-green-100 text-green-800' : 
-                      a.status === 'Ready to Deploy' ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800';
-    document.getElementById('modal-status').innerHTML = `<span class="px-2 py-1 rounded text-xs font-semibold ${statusColor}">${a.status}</span>`;
+    let statusColor = a.status === 'Deployed' ? 'bg-emerald-100 text-emerald-800' : 
+                      a.status === 'Ready to Deploy' ? 'bg-amber-100 text-amber-800' : 'bg-rose-100 text-rose-800';
+    document.getElementById('modal-status').innerHTML = `<span class="px-2.5 py-0.5 rounded-full text-xs font-semibold ${statusColor}">${a.status}</span>`;
     document.getElementById('modal-assigned').innerHTML = getAssignedUserName(a.assignedTo);
     
     document.getElementById('modal-cpu').innerText = a.cpu || '-';
@@ -473,6 +487,7 @@ window.saveModalSecurity = () => {
     closeDetailModal();
 };
 
+// ================= Accessories Management (With Location) =================
 window.showAccessoryForm = (editIndex = null) => {
     DOM.viewAccessories.classList.add('hidden');
     DOM.viewAccessoryForm.classList.remove('hidden');
@@ -484,6 +499,7 @@ window.showAccessoryForm = (editIndex = null) => {
         const acc = db.accessories[editIndex];
         document.getElementById('accId').value = acc.id;
         document.getElementById('accType').value = acc.type;
+        document.getElementById('accLocation').value = acc.location || "";
         document.getElementById('accSerial').value = acc.serial || "";
         document.getElementById('accDesc').value = acc.desc;
         populateUserDropdown('accAssignedTo', acc.assignedTo || "");
@@ -491,6 +507,7 @@ window.showAccessoryForm = (editIndex = null) => {
         DOM.accessoryFormTitle.innerText = "Add Accessory";
         document.getElementById('editAccessoryIndex').value = "";
         DOM.accessoryForm.reset();
+        document.getElementById('accLocation').value = "";
         document.getElementById('accSerial').value = "";
         populateUserDropdown('accAssignedTo', "");
     }
@@ -504,6 +521,18 @@ window.hideAccessoryForm = () => {
 
 function renderAccessoriesTable() {
     DOM.accessoryTableBody.innerHTML = '';
+    
+    if (db.accessories.length === 0) {
+        DOM.accessoryTableBody.innerHTML = `
+            <tr>
+                <td colspan="7" class="py-8 text-center text-sm text-gray-400">
+                    No accessories recorded yet.
+                </td>
+            </tr>
+        `;
+        return;
+    }
+
     db.accessories.forEach((acc, index) => {
         let icon = '<i class="fas fa-box text-gray-400"></i>';
         if (acc.type === 'iPhone') icon = '<i class="fas fa-mobile-alt text-slate-700"></i>';
@@ -511,16 +540,26 @@ function renderAccessoriesTable() {
         if (acc.type === 'Monitor') icon = '<i class="fas fa-desktop text-blue-500"></i>';
         if (acc.type === 'Keyboard' || acc.type === 'Mouse') icon = '<i class="fas fa-mouse text-gray-500"></i>';
 
+        let locBadge = 'bg-gray-100 text-gray-700 border-gray-200';
+        if (acc.location === 'Safebox') locBadge = 'bg-amber-50 text-amber-700 border-amber-200';
+        if (acc.location === 'IT') locBadge = 'bg-blue-50 text-blue-700 border-blue-200';
+        if (acc.location === 'Secure Room') locBadge = 'bg-rose-50 text-rose-700 border-rose-200';
+
+        const locHtml = acc.location 
+            ? `<span class="px-2 py-0.5 rounded-full text-xs font-semibold border ${locBadge}"><i class="fas fa-map-marker-alt mr-1"></i>${acc.location}</span>` 
+            : '<span class="text-gray-400 italic text-xs">-</span>';
+
         DOM.accessoryTableBody.innerHTML += `
-            <tr class="hover:bg-gray-50 transition">
-                <td class="py-3 px-4 font-mono text-sm font-semibold">${acc.id}</td>
+            <tr class="hover:bg-slate-50 transition">
+                <td class="py-3 px-4 font-mono text-sm font-semibold text-[#0b1f3a]">${acc.id}</td>
                 <td class="py-3 px-4 text-sm">${icon} ${acc.type}</td>
-                <td class="py-3 px-4 font-mono text-sm">${acc.serial || '-'}</td>
-                <td class="py-3 px-4">${acc.desc}</td>
+                <td class="py-3 px-4 text-sm">${locHtml}</td>
+                <td class="py-3 px-4 font-mono text-sm text-gray-500">${acc.serial || '-'}</td>
+                <td class="py-3 px-4 text-gray-800">${acc.desc}</td>
                 <td class="py-3 px-4 text-sm">${getAssignedUserName(acc.assignedTo)}</td>
                 <td class="py-3 px-4 text-center space-x-2">
-                    <button onclick="showAccessoryForm(${index})" class="text-blue-500 hover:text-blue-700" title="Edit"><i class="fas fa-edit"></i></button>
-                    <button onclick="deleteAccessory(${index})" class="text-red-500 hover:text-red-700" title="Delete"><i class="fas fa-trash"></i></button>
+                    <button onclick="showAccessoryForm(${index})" class="text-blue-600 hover:text-blue-800" title="Edit"><i class="fas fa-edit"></i></button>
+                    <button onclick="deleteAccessory(${index})" class="text-rose-500 hover:text-rose-700" title="Delete"><i class="fas fa-trash"></i></button>
                 </td>
             </tr>
         `;
@@ -533,6 +572,7 @@ DOM.accessoryForm.addEventListener('submit', (e) => {
     const accData = {
         id: document.getElementById('accId').value.trim(),
         type: document.getElementById('accType').value,
+        location: document.getElementById('accLocation').value,
         serial: document.getElementById('accSerial').value.trim(),
         desc: document.getElementById('accDesc').value.trim(),
         assignedTo: document.getElementById('accAssignedTo').value,
@@ -540,10 +580,10 @@ DOM.accessoryForm.addEventListener('submit', (e) => {
     
     if (editIndex === "") {
         db.accessories.push(accData);
-        addAuditLog('ACCESSORY_MGMT', accData.id, `Added accessory: ${accData.type} - ${accData.desc}`);
+        addAuditLog('ACCESSORY_MGMT', accData.id, `Added accessory: ${accData.type} - ${accData.desc} (Loc: ${accData.location})`);
     } else {
         db.accessories[editIndex] = accData;
-        addAuditLog('ACCESSORY_MGMT', accData.id, `Updated accessory: ${accData.type}`);
+        addAuditLog('ACCESSORY_MGMT', accData.id, `Updated accessory: ${accData.type} (Loc: ${accData.location}, Assigned to: ${accData.assignedTo || 'Unassigned'})`);
     }
     
     hideAccessoryForm();
@@ -559,47 +599,128 @@ window.deleteAccessory = (index) => {
     }
 };
 
+// ================= Users Management =================
 function renderUsersTable() {
     DOM.userTableBody.innerHTML = '';
+    
+    if (db.users.length === 0) {
+        DOM.userTableBody.innerHTML = `
+            <tr>
+                <td colspan="9" class="py-8 text-center text-sm text-gray-400">
+                    No employees registered yet.
+                </td>
+            </tr>
+        `;
+        return;
+    }
+
     db.users.forEach((user, index) => {
+        const isPermanent = (user.employmentType || 'Permanent') === 'Permanent';
+        const typeBadge = isPermanent
+            ? `<span class="bg-blue-50 text-blue-700 border border-blue-200 px-2 py-0.5 rounded-full text-xs font-semibold">Permanent</span>`
+            : `<span class="bg-amber-50 text-amber-700 border border-amber-200 px-2 py-0.5 rounded-full text-xs font-semibold">Temporary</span>`;
+
+        const isResigned = user.status === 'Resigned';
+        const statusBadge = isResigned
+            ? `<span class="bg-slate-100 text-slate-600 border border-slate-300 px-2 py-0.5 rounded-full text-xs font-medium">⚪ Resigned</span>`
+            : `<span class="bg-emerald-50 text-emerald-700 border border-emerald-200 px-2 py-0.5 rounded-full text-xs font-semibold">🟢 Active</span>`;
+
+        const rowStyle = isResigned ? 'bg-slate-50/60 opacity-80' : 'hover:bg-slate-50';
+
         DOM.userTableBody.innerHTML += `
-            <tr class="hover:bg-gray-50 transition">
-                <td class="py-3 px-4 font-mono text-sm font-semibold">${user.empId}</td>
-                <td class="py-3 px-4">${user.firstName} ${user.lastName}</td>
-                <td class="py-3 px-4"><span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">${user.dept}</span></td>
-                <td class="py-3 px-4 text-gray-600 text-sm">${user.email}</td>
-                <td class="py-3 px-4 text-center">
-                    <button onclick="deleteUser(${index})" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+            <tr class="${rowStyle} transition">
+                <td class="py-3 px-4 font-mono text-sm font-semibold text-[#0b1f3a]">${user.empId}</td>
+                <td class="py-3 px-4 font-medium text-slate-800 ${isResigned ? 'line-through text-gray-500' : ''}">
+                    ${user.firstName} ${user.lastName}
+                </td>
+                <td class="py-3 px-4"><span class="bg-slate-100 text-[#0b1f3a] font-medium px-2 py-0.5 rounded text-xs">${user.dept}</span></td>
+                <td class="py-3 px-4">${typeBadge}</td>
+                <td class="py-3 px-4">${statusBadge}</td>
+                <td class="py-3 px-4 font-mono text-xs text-gray-600">${user.startDate || '-'}</td>
+                <td class="py-3 px-4 font-mono text-xs text-gray-600">${user.resignDate || '-'}</td>
+                <td class="py-3 px-4 text-gray-600 text-xs">${user.email}</td>
+                <td class="py-3 px-4 text-center space-x-2">
+                    <button onclick="editUser(${index})" class="text-blue-600 hover:text-blue-800" title="Edit Employee"><i class="fas fa-edit"></i></button>
+                    <button onclick="deleteUser(${index})" class="text-rose-500 hover:text-rose-700" title="Delete Employee"><i class="fas fa-trash"></i></button>
                 </td>
             </tr>
         `;
     });
 }
 
+window.editUser = (index) => {
+    const user = db.users[index];
+    if (!user) return;
+
+    document.getElementById('editUserIndex').value = index;
+    document.getElementById('empId').value = user.empId;
+    document.getElementById('firstName').value = user.firstName;
+    document.getElementById('lastName').value = user.lastName;
+    document.getElementById('email').value = user.email;
+    document.getElementById('dept').value = user.dept;
+    document.getElementById('employmentType').value = user.employmentType || 'Permanent';
+    document.getElementById('userStatus').value = user.status || 'Active';
+    document.getElementById('startDate').value = user.startDate || '';
+    document.getElementById('resignDate').value = user.resignDate || '';
+
+    DOM.userFormTitle.innerHTML = `<i class="fas fa-user-edit mr-2 text-amber-600"></i> Edit Employee: ${user.firstName} (${user.empId})`;
+    DOM.saveUserBtn.innerHTML = `<i class="fas fa-save mr-2"></i> Update Employee`;
+    DOM.saveUserBtn.className = "bg-amber-600 text-white px-6 py-2.5 rounded-lg hover:bg-amber-700 transition text-sm font-semibold shadow-sm flex items-center";
+    DOM.cancelEditUserBtn.classList.remove('hidden');
+
+    DOM.userForm.scrollIntoView({ behavior: 'smooth' });
+};
+
+window.resetUserForm = () => {
+    document.getElementById('editUserIndex').value = '';
+    DOM.userForm.reset();
+    document.getElementById('employmentType').value = 'Permanent';
+    document.getElementById('userStatus').value = 'Active';
+
+    DOM.userFormTitle.innerHTML = `<i class="fas fa-user-plus mr-2 text-blue-600"></i> Add New Employee`;
+    DOM.saveUserBtn.innerHTML = `<i class="fas fa-user-plus mr-2"></i> Add Employee`;
+    DOM.saveUserBtn.className = "bg-[#0b1f3a] text-white px-6 py-2.5 rounded-lg hover:bg-[#071526] transition text-sm font-semibold shadow-sm flex items-center";
+    DOM.cancelEditUserBtn.classList.add('hidden');
+};
+
 DOM.userForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    const newUser = {
+    const editIndex = document.getElementById('editUserIndex').value;
+
+    const userData = {
         empId: document.getElementById('empId').value.trim(),
         firstName: document.getElementById('firstName').value.trim(),
         lastName: document.getElementById('lastName').value.trim(),
         dept: document.getElementById('dept').value,
+        employmentType: document.getElementById('employmentType').value,
+        status: document.getElementById('userStatus').value,
+        startDate: document.getElementById('startDate').value,
+        resignDate: document.getElementById('resignDate').value,
         email: document.getElementById('email').value.trim(),
     };
-    db.users.push(newUser);
-    addAuditLog('USER_MGMT', newUser.empId, `Added employee: ${newUser.firstName} ${newUser.lastName} (${newUser.dept})`);
-    DOM.userForm.reset();
+
+    if (editIndex === "") {
+        db.users.push(userData);
+        addAuditLog('USER_MGMT', userData.empId, `Added employee: ${userData.firstName} ${userData.lastName} (${userData.dept} | ${userData.status})`);
+    } else {
+        db.users[editIndex] = userData;
+        addAuditLog('USER_MGMT', userData.empId, `Updated employee: ${userData.firstName} ${userData.lastName} (Status: ${userData.status})`);
+    }
+
+    resetUserForm();
     updateApp();
 });
 
 window.deleteUser = (index) => {
     const u = db.users[index];
-    if(confirm(`Are you sure you want to delete user ${u.firstName} (${u.empId})?`)) {
+    if(confirm(`Are you sure you want to delete employee ${u.firstName} ${u.lastName} (${u.empId})?`)) {
         addAuditLog('USER_MGMT', u.empId, `Deleted employee: ${u.firstName} ${u.lastName}`);
         db.users.splice(index, 1);
         updateApp();
     }
 };
 
+// ================= Logs Management =================
 function renderLogsTable() {
     if (!DOM.logTableBody) return;
     DOM.logTableBody.innerHTML = '';
@@ -632,7 +753,7 @@ function renderLogsTable() {
                 <td class="py-2.5 px-4">
                     <span class="px-2 py-0.5 rounded text-xs ${catBadge}">${log.category}</span>
                 </td>
-                <td class="py-2.5 px-4 font-mono text-xs font-semibold text-slate-700">
+                <td class="py-2.5 px-4 font-mono text-xs font-semibold text-[#0b1f3a]">
                     ${log.target || '-'}
                 </td>
                 <td class="py-2.5 px-4 text-gray-700 text-xs">
@@ -650,11 +771,12 @@ window.clearAllLogs = () => {
     }
 };
 
+// ================= Import / Export =================
 DOM.exportBtn.addEventListener('click', () => {
     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(db, null, 2));
     const dlAnchorElem = document.createElement('a');
     dlAnchorElem.setAttribute("href", dataStr);
-    dlAnchorElem.setAttribute("download", `it_inventory_backup_${new Date().toISOString().split('T')[0]}.json`);
+    dlAnchorElem.setAttribute("download", `rakkar_inventory_backup_${new Date().toISOString().split('T')[0]}.json`);
     dlAnchorElem.click();
 });
 
@@ -682,6 +804,7 @@ DOM.importBtn.addEventListener('change', (e) => {
     reader.readAsText(file);
 });
 
+// ================= Export Security Audit Report (CSV) =================
 window.exportSecurityReportCSV = () => {
     if (db.assets.length === 0) {
         alert('No computer assets to export.');
@@ -732,7 +855,7 @@ window.exportSecurityReportCSV = () => {
     const today = new Date().toISOString().split('T')[0];
     const link = document.createElement("a");
     link.setAttribute("href", url);
-    link.setAttribute("download", `IT_Security_Compliance_Report_${today}.csv`);
+    link.setAttribute("download", `Rakkar_Security_Compliance_Report_${today}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -866,5 +989,6 @@ async function pushDataToGitHub() {
 }
 
 // ================= Initialization =================
+checkAuthStatus();
 updateApp();
 pullDataFromGitHub();
