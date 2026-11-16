@@ -26,39 +26,6 @@
         "lastAuditedAt": "2026-11-15T03:00:00.000Z"
       },
       "auditHistory": []
-    },
-    {
-      "tag": "q222",
-      "type": "Desktop",
-      "os": "Windows",
-      "model": "22222",
-      "serial": "22222",
-      "cpu": "I9",
-      "ram": "32",
-      "storage": "1 tb",
-      "mac": "2222",
-      "ip": "2222",
-      "status": "Ready to Deploy",
-      "assignedTo": "",
-      "purchaseDate": "",
-      "warrantyDate": "",
-      "notes": "",
-      "security": {
-        "diskEncryption": true,
-        "usbBlocked": true,
-        "edrActive": true,
-        "osBuild": "sss",
-        "lastPatchDate": "2026-11-29",
-        "isCompliant": true,
-        "lastAuditedAt": "2026-11-15T04:04:35.119Z"
-      },
-      "auditHistory": [
-        {
-          "timestamp": "2026-11-15T04:04:35.119Z",
-          "isCompliant": true,
-          "summary": "BitLocker:ON | USB:BLOCK | EDR:ON | Patch:2026-11-29"
-        }
-      ]
     }
   ],
   "accessories": [
@@ -80,6 +47,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1794794657758",
+      "timestamp": "2026-11-16T02:04:17.758Z",
+      "category": "ASSET_MGMT",
+      "target": "q222",
+      "details": "Deleted computer: 22222 (S/N: 22222)"
+    },
     {
       "id": "LOG-1794715475120",
       "timestamp": "2026-11-15T04:04:35.120Z",
