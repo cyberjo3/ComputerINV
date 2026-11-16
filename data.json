@@ -37,16 +37,22 @@
       "assignedTo": "EMP-001"
     }
   ],
-  "users": [
-    {
-      "empId": "EMP-001",
-      "firstName": "Kanshi",
-      "lastName": "K.",
-      "dept": "IT Security",
-      "email": "kanshi@company.com"
-    }
-  ],
+  "users": [],
   "logs": [
+    {
+      "id": "LOG-1794840603147",
+      "timestamp": "2026-11-16T14:50:03.147Z",
+      "category": "USER_MGMT",
+      "target": "EMP-001",
+      "details": "Deleted employee: Kanshi K."
+    },
+    {
+      "id": "LOG-1794840594685",
+      "timestamp": "2026-11-16T14:49:54.685Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session authenticated via Passcode"
+    },
     {
       "id": "LOG-1794840409707",
       "timestamp": "2026-11-16T14:46:49.707Z",
