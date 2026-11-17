@@ -122,9 +122,27 @@
       "startDate": "",
       "resignDate": "",
       "email": "pachara@rakkardigital.com"
+    },
+    {
+      "empId": "R69007",
+      "firstName": "Surasak",
+      "lastName": "Pansanthia",
+      "dept": "Operations",
+      "employmentType": "Permanent",
+      "status": "Active",
+      "startDate": "",
+      "resignDate": "",
+      "email": "surasak@rakkardigital.com"
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1794896488652",
+      "timestamp": "2026-11-17T06:21:28.652Z",
+      "category": "USER_MGMT",
+      "target": "R69007",
+      "details": "Added employee: Surasak Pansanthia (Operations | Active)"
+    },
     {
       "id": "LOG-1794896441539",
       "timestamp": "2026-11-17T06:20:41.539Z",
