@@ -273,7 +273,7 @@
       "dept": "DevOps",
       "employmentType": "Permanent",
       "status": "Active",
-      "startDate": "",
+      "startDate": "2026-11-16",
       "resignDate": "",
       "email": "punnarat@rakkardigital.com"
     },
@@ -290,6 +290,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1794897375685",
+      "timestamp": "2026-11-17T06:36:15.685Z",
+      "category": "USER_MGMT",
+      "target": "R69022",
+      "details": "Updated employee: Punnarat Chirawatcharakiat (Status: Active)"
+    },
     {
       "id": "LOG-1794897365509",
       "timestamp": "2026-11-17T06:36:05.509Z",
