@@ -135,7 +135,7 @@
       "email": "surasak@rakkardigital.com"
     },
     {
-      "empId": "R69008",
+      "empId": "T003",
       "firstName": "Pawat",
       "lastName": "Siratanapanth",
       "dept": "Operations",
@@ -147,6 +147,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1794896566141",
+      "timestamp": "2026-11-17T06:22:46.141Z",
+      "category": "USER_MGMT",
+      "target": "T003",
+      "details": "Updated employee: Pawat Siratanapanth (Status: Active)"
+    },
     {
       "id": "LOG-1794896547984",
       "timestamp": "2026-11-17T06:22:27.984Z",
