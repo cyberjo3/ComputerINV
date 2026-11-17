@@ -133,9 +133,27 @@
       "startDate": "",
       "resignDate": "",
       "email": "surasak@rakkardigital.com"
+    },
+    {
+      "empId": "R69008",
+      "firstName": "Pawat",
+      "lastName": "Siratanapanth",
+      "dept": "Operations",
+      "employmentType": "Temporary",
+      "status": "Active",
+      "startDate": "",
+      "resignDate": "",
+      "email": "pawat@rakkardigital.com"
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1794896547984",
+      "timestamp": "2026-11-17T06:22:27.984Z",
+      "category": "USER_MGMT",
+      "target": "R69008",
+      "details": "Added employee: Pawat Siratanapanth (Operations | Active)"
+    },
     {
       "id": "LOG-1794896488652",
       "timestamp": "2026-11-17T06:21:28.652Z",
