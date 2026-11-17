@@ -1,5 +1,25 @@
 {
-  "assets": [],
+  "assets": [
+    {
+      "tag": "COM-2026-0013",
+      "type": "Laptop",
+      "os": "Windows",
+      "model": "LENOVO model : 21SYS0MG00",
+      "serial": "PF62TA96",
+      "cpu": "1x Intel® Core™ Ultra 5 225U",
+      "ram": "16 GB",
+      "storage": "470 GB",
+      "mac": "E8BFE19462F4",
+      "ip": "",
+      "status": "Ready to Deploy",
+      "assignedTo": "",
+      "purchaseDate": "2026-11-01",
+      "warrantyDate": "2029-08-31",
+      "notes": "",
+      "security": null,
+      "auditHistory": []
+    }
+  ],
   "accessories": [],
   "users": [
     {
@@ -290,6 +310,20 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1794898105198",
+      "timestamp": "2026-11-17T06:48:25.198Z",
+      "category": "ASSET_MGMT",
+      "target": "COM-2026-0013",
+      "details": "Added computer: LENOVO model : 21SYS0MG00 (PF62TA96)"
+    },
+    {
+      "id": "LOG-1794897567664",
+      "timestamp": "2026-11-17T06:39:27.664Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session authenticated via Passcode"
+    },
     {
       "id": "LOG-1794897375685",
       "timestamp": "2026-11-17T06:36:15.685Z",
