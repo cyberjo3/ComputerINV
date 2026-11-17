@@ -7,18 +7,17 @@
       "serial": "CN-0M345-XXXXX",
       "desc": "Dell UltraSharp 27-inch 4K",
       "assignedTo": "EMP-001"
-    },
-    {
-      "id": "B002",
-      "type": "iPad",
-      "location": "IT",
-      "serial": "asdswww",
-      "desc": "Ipad",
-      "assignedTo": ""
     }
   ],
   "users": [],
   "logs": [
+    {
+      "id": "LOG-1794894681587",
+      "timestamp": "2026-11-17T05:51:21.587Z",
+      "category": "ACCESSORY_MGMT",
+      "target": "B002",
+      "details": "Deleted accessory: iPad - Ipad"
+    },
     {
       "id": "LOG-1794894679454",
       "timestamp": "2026-11-17T05:51:19.454Z",
