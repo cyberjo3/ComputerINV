@@ -56,9 +56,27 @@
       "startDate": "",
       "resignDate": "",
       "email": "kittiwut@rakkardigital.com"
+    },
+    {
+      "empId": "AS001",
+      "firstName": "Akkayut",
+      "lastName": "Boonin",
+      "dept": "Management",
+      "employmentType": "Permanent",
+      "status": "Active",
+      "startDate": "",
+      "resignDate": "",
+      "email": "akkayut@rakkardigital.com"
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1794895595481",
+      "timestamp": "2026-11-17T06:06:35.481Z",
+      "category": "USER_MGMT",
+      "target": "AS001",
+      "details": "Added employee: Akkayut Boonin (Management | Active)"
+    },
     {
       "id": "LOG-1794895249398",
       "timestamp": "2026-11-17T06:00:49.398Z",
