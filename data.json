@@ -1,16 +1,15 @@
 {
   "assets": [],
-  "accessories": [
-    {
-      "id": "ACC-001",
-      "type": "Monitor",
-      "serial": "CN-0M345-XXXXX",
-      "desc": "Dell UltraSharp 27-inch 4K",
-      "assignedTo": "EMP-001"
-    }
-  ],
+  "accessories": [],
   "users": [],
   "logs": [
+    {
+      "id": "LOG-1794894683944",
+      "timestamp": "2026-11-17T05:51:23.944Z",
+      "category": "ACCESSORY_MGMT",
+      "target": "ACC-001",
+      "details": "Deleted accessory: Monitor - Dell UltraSharp 27-inch 4K"
+    },
     {
       "id": "LOG-1794894681587",
       "timestamp": "2026-11-17T05:51:21.587Z",
