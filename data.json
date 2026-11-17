@@ -218,7 +218,7 @@
       "dept": "IT Security",
       "employmentType": "Permanent",
       "status": "Active",
-      "startDate": "",
+      "startDate": "2026-10-01",
       "resignDate": "",
       "email": "virunpon@rakkardigital.com"
     },
@@ -290,6 +290,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1794897365509",
+      "timestamp": "2026-11-17T06:36:05.509Z",
+      "category": "USER_MGMT",
+      "target": "R69016",
+      "details": "Updated employee: Virunpon Kaewraparounghirun (Status: Active)"
+    },
     {
       "id": "LOG-1794897344127",
       "timestamp": "2026-11-17T06:35:44.127Z",
