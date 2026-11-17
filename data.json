@@ -111,9 +111,27 @@
       "startDate": "",
       "resignDate": "",
       "email": "thanakit@rakkardigital.com"
+    },
+    {
+      "empId": "AS002",
+      "firstName": "Pachara",
+      "lastName": "Putthavorn",
+      "dept": "Finance",
+      "employmentType": "Permanent",
+      "status": "Active",
+      "startDate": "",
+      "resignDate": "",
+      "email": "pachara@rakkardigital.com"
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1794896441539",
+      "timestamp": "2026-11-17T06:20:41.539Z",
+      "category": "USER_MGMT",
+      "target": "AS002",
+      "details": "Added employee: Pachara Putthavorn (Finance | Active)"
+    },
     {
       "id": "LOG-1794896391086",
       "timestamp": "2026-11-17T06:19:51.086Z",
