@@ -12,9 +12,27 @@
       "startDate": "",
       "resignDate": "",
       "email": "bunnapat@rakkardigital.com"
+    },
+    {
+      "empId": "R69008",
+      "firstName": "Choatkanaphat",
+      "lastName": "Dhitpakdekunanon",
+      "dept": "DevOps",
+      "employmentType": "Temporary",
+      "status": "Active",
+      "startDate": "",
+      "resignDate": "",
+      "email": "choatkanaphat@rakkardigital.com"
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1794894802835",
+      "timestamp": "2026-11-17T05:53:22.835Z",
+      "category": "USER_MGMT",
+      "target": "R69008",
+      "details": "Added employee: Choatkanaphat Dhitpakdekunanon (DevOps | Active)"
+    },
     {
       "id": "LOG-1794894746149",
       "timestamp": "2026-11-17T05:52:26.149Z",
