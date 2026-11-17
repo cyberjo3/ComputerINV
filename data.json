@@ -210,9 +210,27 @@
       "startDate": "",
       "resignDate": "",
       "email": "nonthawat@rakkardigital.com"
+    },
+    {
+      "empId": "R69016",
+      "firstName": "Virunpon",
+      "lastName": "Kaewraparounghirun",
+      "dept": "IT Security",
+      "employmentType": "Permanent",
+      "status": "Active",
+      "startDate": "",
+      "resignDate": "",
+      "email": "virunpon@rakkardigital.com"
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1794896977704",
+      "timestamp": "2026-11-17T06:29:37.704Z",
+      "category": "USER_MGMT",
+      "target": "R69016",
+      "details": "Added employee: Virunpon Kaewraparounghirun (IT Security | Active)"
+    },
     {
       "id": "LOG-1794896940177",
       "timestamp": "2026-11-17T06:29:00.177Z",
