@@ -45,9 +45,27 @@
       "startDate": "",
       "resignDate": "",
       "email": "pratchakon@rakkardigital.com"
+    },
+    {
+      "empId": "Mcom001",
+      "firstName": "Kittiwut",
+      "lastName": "Horthong",
+      "dept": "Management",
+      "employmentType": "Permanent",
+      "status": "Active",
+      "startDate": "",
+      "resignDate": "",
+      "email": "kittiwut@rakkardigital.com"
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1794895249398",
+      "timestamp": "2026-11-17T06:00:49.398Z",
+      "category": "USER_MGMT",
+      "target": "Mcom001",
+      "details": "Added employee: Kittiwut Horthong (Management | Active)"
+    },
     {
       "id": "LOG-1794894917650",
       "timestamp": "2026-11-17T05:55:17.650Z",
