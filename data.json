@@ -265,9 +265,27 @@
       "startDate": "",
       "resignDate": "",
       "email": "warangkana@rakkardigital.com"
+    },
+    {
+      "empId": "R69022",
+      "firstName": "Punnarat",
+      "lastName": "Chirawatcharakiat",
+      "dept": "DevOps",
+      "employmentType": "Permanent",
+      "status": "Active",
+      "startDate": "",
+      "resignDate": "",
+      "email": "punnarat@rakkardigital.com"
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1794897248939",
+      "timestamp": "2026-11-17T06:34:08.939Z",
+      "category": "USER_MGMT",
+      "target": "R69022",
+      "details": "Added employee: Punnarat Chirawatcharakiat (DevOps | Active)"
+    },
     {
       "id": "LOG-1794897179146",
       "timestamp": "2026-11-17T06:32:59.146Z",
