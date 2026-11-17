@@ -15,18 +15,17 @@
       "serial": "asdswww",
       "desc": "Ipad",
       "assignedTo": ""
-    },
-    {
-      "id": "B002",
-      "type": "iPad",
-      "location": "Safebox",
-      "serial": "iadmin",
-      "desc": "ipad",
-      "assignedTo": ""
     }
   ],
   "users": [],
   "logs": [
+    {
+      "id": "LOG-1794894679454",
+      "timestamp": "2026-11-17T05:51:19.454Z",
+      "category": "ACCESSORY_MGMT",
+      "target": "B002",
+      "details": "Deleted accessory: iPad - ipad"
+    },
     {
       "id": "LOG-1794894674694",
       "timestamp": "2026-11-17T05:51:14.694Z",
