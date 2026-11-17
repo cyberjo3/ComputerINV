@@ -144,9 +144,27 @@
       "startDate": "",
       "resignDate": "",
       "email": "pawat@rakkardigital.com"
+    },
+    {
+      "empId": "R69009",
+      "firstName": "Chawan",
+      "lastName": "Jewsuwun",
+      "dept": "Operations",
+      "employmentType": "Permanent",
+      "status": "Active",
+      "startDate": "",
+      "resignDate": "",
+      "email": "chawan@rakkardigital.com"
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1794896621514",
+      "timestamp": "2026-11-17T06:23:41.514Z",
+      "category": "USER_MGMT",
+      "target": "R69009",
+      "details": "Added employee: Chawan Jewsuwun (Operations | Active)"
+    },
     {
       "id": "LOG-1794896566141",
       "timestamp": "2026-11-17T06:22:46.141Z",
