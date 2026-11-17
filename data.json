@@ -199,9 +199,41 @@
       "startDate": "",
       "resignDate": "",
       "email": "panita@rakkardigital.com"
+    },
+    {
+      "empId": "R69015",
+      "firstName": "Nonthawat",
+      "lastName": "Kanboon",
+      "dept": "DevOps",
+      "employmentType": "Permanent",
+      "status": "Active",
+      "startDate": "",
+      "resignDate": "",
+      "email": "nonthawat@rakkardigital.com"
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1794896940177",
+      "timestamp": "2026-11-17T06:29:00.177Z",
+      "category": "USER_MGMT",
+      "target": "R69015",
+      "details": "Added employee: Nonthawat Kanboon (DevOps | Active)"
+    },
+    {
+      "id": "LOG-1794896867300",
+      "timestamp": "2026-11-17T06:27:47.300Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session authenticated via Passcode"
+    },
+    {
+      "id": "LOG-1794896860294",
+      "timestamp": "2026-11-17T06:27:40.294Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session logged out and data synchronized"
+    },
     {
       "id": "LOG-1794896843654",
       "timestamp": "2026-11-17T06:27:23.654Z",
