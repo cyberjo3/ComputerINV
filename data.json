@@ -89,9 +89,27 @@
       "startDate": "",
       "resignDate": "",
       "email": "pongsakorn@rakkardigital.com"
+    },
+    {
+      "empId": "R69005",
+      "firstName": "Pitipong",
+      "lastName": "Lulitanonda",
+      "dept": "Operations",
+      "employmentType": "Permanent",
+      "status": "Active",
+      "startDate": "",
+      "resignDate": "",
+      "email": "pitipong@rakkardigital.co"
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1794896311962",
+      "timestamp": "2026-11-17T06:18:31.962Z",
+      "category": "USER_MGMT",
+      "target": "R69005",
+      "details": "Added employee: Pitipong Lulitanonda (Operations | Active)"
+    },
     {
       "id": "LOG-1794895913105",
       "timestamp": "2026-11-17T06:11:53.105Z",
