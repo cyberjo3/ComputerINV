@@ -1,8 +1,27 @@
 {
   "assets": [],
   "accessories": [],
-  "users": [],
+  "users": [
+    {
+      "empId": "R69003",
+      "firstName": "Bunnapat",
+      "lastName": "Kaewsathit",
+      "dept": "DevOps",
+      "employmentType": "Permanent",
+      "status": "Active",
+      "startDate": "",
+      "resignDate": "",
+      "email": "bunnapat@rakkardigital.com"
+    }
+  ],
   "logs": [
+    {
+      "id": "LOG-1794894746149",
+      "timestamp": "2026-11-17T05:52:26.149Z",
+      "category": "USER_MGMT",
+      "target": "R69003",
+      "details": "Added employee: Bunnapat Kaewsathit (DevOps | Active)"
+    },
     {
       "id": "LOG-1794894683944",
       "timestamp": "2026-11-17T05:51:23.944Z",
