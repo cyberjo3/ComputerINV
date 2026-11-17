@@ -7,63 +7,125 @@
       "serial": "CN-0M345-XXXXX",
       "desc": "Dell UltraSharp 27-inch 4K",
       "assignedTo": "EMP-001"
+    },
+    {
+      "id": "B002",
+      "type": "iPad",
+      "location": "IT",
+      "serial": "asdswww",
+      "desc": "Ipad",
+      "assignedTo": ""
+    },
+    {
+      "id": "B002",
+      "type": "iPad",
+      "location": "Safebox",
+      "serial": "iadmin",
+      "desc": "ipad",
+      "assignedTo": ""
     }
   ],
   "users": [
     {
-      "empId": "R69003",
-      "firstName": "Bunnapat",
-      "lastName": "Kaewsathit",
-      "dept": "Management",
-      "email": "bunnapat@rakkardigital.com"
+      "empId": "RK001",
+      "firstName": "aaa",
+      "lastName": "aaaa",
+      "dept": "IT Security",
+      "employmentType": "Permanent",
+      "status": "Active",
+      "startDate": "2026-05-14",
+      "resignDate": "",
+      "email": "aaa@rak.com"
     }
   ],
   "logs": [
     {
-      "id": "LOG-1794795201686",
-      "timestamp": "2026-11-16T02:13:21.686Z",
-      "category": "USER_MGMT",
-      "target": "R69003",
-      "details": "Added employee: Bunnapat Kaewsathit (Management)"
-    },
-    {
-      "id": "LOG-1794794665595",
-      "timestamp": "2026-11-16T02:04:25.595Z",
-      "category": "USER_MGMT",
-      "target": "EMP-001",
-      "details": "Deleted employee: Kanshi K."
-    },
-    {
-      "id": "LOG-1794794661065",
-      "timestamp": "2026-11-16T02:04:21.065Z",
+      "id": "LOG-1794894664606",
+      "timestamp": "2026-11-17T05:51:04.606Z",
       "category": "ASSET_MGMT",
       "target": "AST-001",
       "details": "Deleted computer: MacBook Pro 14-inch M3 (S/N: C02XYZ123456)"
     },
     {
-      "id": "LOG-1794794657758",
-      "timestamp": "2026-11-16T02:04:17.758Z",
-      "category": "ASSET_MGMT",
-      "target": "q222",
-      "details": "Deleted computer: 22222 (S/N: 22222)"
+      "id": "LOG-1794894659834",
+      "timestamp": "2026-11-17T05:50:59.834Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session authenticated via Passcode"
     },
     {
-      "id": "LOG-1794715475120",
-      "timestamp": "2026-11-15T04:04:35.120Z",
-      "category": "SECURITY_AUDIT",
-      "target": "q222",
-      "details": "Audit saved (COMPLIANT) - BitLocker:ON | USB:BLOCK | EDR:ON | Patch:2026-11-29"
+      "id": "LOG-1794841576204",
+      "timestamp": "2026-11-16T15:06:16.204Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session authenticated via Passcode"
     },
     {
-      "id": "LOG-1794714144137",
-      "timestamp": "2026-11-15T03:42:24.137Z",
-      "category": "ASSET_MGMT",
-      "target": "q222",
-      "details": "Added computer: 22222 (22222)"
+      "id": "LOG-1794841551697",
+      "timestamp": "2026-11-16T15:05:51.697Z",
+      "category": "USER_MGMT",
+      "target": "RK001",
+      "details": "Added employee: aaa aaaa (IT Security | Active)"
     },
     {
-      "id": "LOG-1794714052127",
-      "timestamp": "2026-11-15T03:40:52.127Z",
+      "id": "LOG-1794841520147",
+      "timestamp": "2026-11-16T15:05:20.147Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session authenticated via Passcode"
+    },
+    {
+      "id": "LOG-1794841515824",
+      "timestamp": "2026-11-16T15:05:15.824Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session logged out and data synchronized"
+    },
+    {
+      "id": "LOG-1794841506879",
+      "timestamp": "2026-11-16T15:05:06.879Z",
+      "category": "ACCESSORY_MGMT",
+      "target": "B002",
+      "details": "Added accessory: iPad - ipad (Loc: Safebox)"
+    },
+    {
+      "id": "LOG-1794841482167",
+      "timestamp": "2026-11-16T15:04:42.167Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session authenticated via Passcode"
+    },
+    {
+      "id": "LOG-1794841287557",
+      "timestamp": "2026-11-16T15:01:27.557Z",
+      "category": "ACCESSORY_MGMT",
+      "target": "B002",
+      "details": "Added accessory: iPad - Ipad (Loc: IT)"
+    },
+    {
+      "id": "LOG-1794841260941",
+      "timestamp": "2026-11-16T15:01:00.941Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session authenticated via Passcode"
+    },
+    {
+      "id": "LOG-1794840603147",
+      "timestamp": "2026-11-16T14:50:03.147Z",
+      "category": "USER_MGMT",
+      "target": "EMP-001",
+      "details": "Deleted employee: Kanshi K."
+    },
+    {
+      "id": "LOG-1794840594685",
+      "timestamp": "2026-11-16T14:49:54.685Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session authenticated via Passcode"
+    },
+    {
+      "id": "LOG-1794840409707",
+      "timestamp": "2026-11-16T14:46:49.707Z",
       "category": "SYSTEM",
       "target": "DATABASE",
       "details": "Imported JSON database backup"
