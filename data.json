@@ -67,9 +67,27 @@
       "startDate": "",
       "resignDate": "",
       "email": "akkayut@rakkardigital.com"
+    },
+    {
+      "empId": "AS002",
+      "firstName": "Natthagan",
+      "lastName": "Loweera",
+      "dept": "Compliance",
+      "employmentType": "Permanent",
+      "status": "Active",
+      "startDate": "",
+      "resignDate": "",
+      "email": "natthagan@rakkardigital.com"
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1794895825494",
+      "timestamp": "2026-11-17T06:10:25.494Z",
+      "category": "USER_MGMT",
+      "target": "AS002",
+      "details": "Added employee: Natthagan Loweera (Compliance | Active)"
+    },
     {
       "id": "LOG-1794895595481",
       "timestamp": "2026-11-17T06:06:35.481Z",
