@@ -155,9 +155,27 @@
       "startDate": "",
       "resignDate": "",
       "email": "chawan@rakkardigital.com"
+    },
+    {
+      "empId": "R69010",
+      "firstName": "Theetawat",
+      "lastName": "Purahong",
+      "dept": "DevOps",
+      "employmentType": "Permanent",
+      "status": "Active",
+      "startDate": "",
+      "resignDate": "",
+      "email": "theetawat@rakkardigital.com"
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1794896682486",
+      "timestamp": "2026-11-17T06:24:42.486Z",
+      "category": "USER_MGMT",
+      "target": "R69010",
+      "details": "Added employee: Theetawat Purahong (DevOps | Active)"
+    },
     {
       "id": "LOG-1794896621514",
       "timestamp": "2026-11-17T06:23:41.514Z",
