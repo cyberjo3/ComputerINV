@@ -188,9 +188,27 @@
       "startDate": "",
       "resignDate": "",
       "email": "mantana@rakkardigital.com"
+    },
+    {
+      "empId": "R69014",
+      "firstName": "Panita",
+      "lastName": "Sujarakittikul",
+      "dept": "DevOps",
+      "employmentType": "Permanent",
+      "status": "Active",
+      "startDate": "",
+      "resignDate": "",
+      "email": "panita@rakkardigital.com"
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1794896843654",
+      "timestamp": "2026-11-17T06:27:23.654Z",
+      "category": "USER_MGMT",
+      "target": "R69014",
+      "details": "Added employee: Panita Sujarakittikul (DevOps | Active)"
+    },
     {
       "id": "LOG-1794896793439",
       "timestamp": "2026-11-17T06:26:33.439Z",
