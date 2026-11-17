@@ -25,20 +25,15 @@
       "assignedTo": ""
     }
   ],
-  "users": [
-    {
-      "empId": "RK001",
-      "firstName": "aaa",
-      "lastName": "aaaa",
-      "dept": "IT Security",
-      "employmentType": "Permanent",
-      "status": "Active",
-      "startDate": "2026-05-14",
-      "resignDate": "",
-      "email": "aaa@rak.com"
-    }
-  ],
+  "users": [],
   "logs": [
+    {
+      "id": "LOG-1794894674694",
+      "timestamp": "2026-11-17T05:51:14.694Z",
+      "category": "USER_MGMT",
+      "target": "RK001",
+      "details": "Deleted employee: aaa aaaa"
+    },
     {
       "id": "LOG-1794894664606",
       "timestamp": "2026-11-17T05:51:04.606Z",
