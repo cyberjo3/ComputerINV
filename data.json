@@ -177,9 +177,27 @@
       "startDate": "",
       "resignDate": "",
       "email": "pantaree@rakkardigital.com"
+    },
+    {
+      "empId": "R69013",
+      "firstName": "Mantana",
+      "lastName": "Nitisrivorakul",
+      "dept": "Compliance",
+      "employmentType": "Permanent",
+      "status": "Active",
+      "startDate": "",
+      "resignDate": "",
+      "email": "mantana@rakkardigital.com"
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1794896793439",
+      "timestamp": "2026-11-17T06:26:33.439Z",
+      "category": "USER_MGMT",
+      "target": "R69013",
+      "details": "Added employee: Mantana Nitisrivorakul (Compliance | Active)"
+    },
     {
       "id": "LOG-1794896740785",
       "timestamp": "2026-11-17T06:25:40.785Z",
