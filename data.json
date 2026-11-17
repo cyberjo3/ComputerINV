@@ -78,9 +78,27 @@
       "startDate": "",
       "resignDate": "",
       "email": "natthagan@rakkardigital.com"
+    },
+    {
+      "empId": "T001",
+      "firstName": "Pongsakorn",
+      "lastName": "Panassitanon",
+      "dept": "IT Security",
+      "employmentType": "Temporary",
+      "status": "Active",
+      "startDate": "",
+      "resignDate": "",
+      "email": "pongsakorn@rakkardigital.com"
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1794895913105",
+      "timestamp": "2026-11-17T06:11:53.105Z",
+      "category": "USER_MGMT",
+      "target": "T001",
+      "details": "Added employee: Pongsakorn Panassitanon (IT Security | Active)"
+    },
     {
       "id": "LOG-1794895825494",
       "timestamp": "2026-11-17T06:10:25.494Z",
