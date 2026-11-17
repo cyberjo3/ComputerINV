@@ -243,9 +243,27 @@
       "startDate": "",
       "resignDate": "",
       "email": "suphaphon@rakkardigital.com"
+    },
+    {
+      "empId": "R69020",
+      "firstName": "Dawit",
+      "lastName": "Yingmonkhong",
+      "dept": "Operations",
+      "employmentType": "Permanent",
+      "status": "Active",
+      "startDate": "",
+      "resignDate": "",
+      "email": "dawit@rakkardigital.com"
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1794897093580",
+      "timestamp": "2026-11-17T06:31:33.580Z",
+      "category": "USER_MGMT",
+      "target": "R69020",
+      "details": "Added employee: Dawit Yingmonkhong (Operations | Active)"
+    },
     {
       "id": "LOG-1794897059478",
       "timestamp": "2026-11-17T06:30:59.478Z",
