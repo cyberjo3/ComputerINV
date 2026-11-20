@@ -89,6 +89,25 @@
       "notes": "",
       "security": null,
       "auditHistory": []
+    },
+    {
+      "tag": "OFU-2569-0056",
+      "type": "Laptop",
+      "os": "Windows",
+      "model": "LENOVO model : 21SYS0MG00",
+      "serial": "PF62VTC7",
+      "cpu": "1x Intel® Core™ Ultra 5 225U",
+      "ram": "16 GB",
+      "storage": "470 GB",
+      "mac": "",
+      "ip": "",
+      "status": "Ready to Deploy",
+      "assignedTo": "",
+      "purchaseDate": "",
+      "warrantyDate": "",
+      "notes": "",
+      "security": null,
+      "auditHistory": []
     }
   ],
   "accessories": [],
@@ -381,6 +400,20 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795157693475",
+      "timestamp": "2026-11-20T06:54:53.475Z",
+      "category": "ASSET_MGMT",
+      "target": "OFU-2569-0056",
+      "details": "Added computer: LENOVO model : 21SYS0MG00 (PF62VTC7)"
+    },
+    {
+      "id": "LOG-1795157614336",
+      "timestamp": "2026-11-20T06:53:34.336Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session authenticated via Passcode"
+    },
     {
       "id": "LOG-1794991172218",
       "timestamp": "2026-11-18T08:39:32.218Z",
