@@ -184,6 +184,25 @@
       "notes": "",
       "security": null,
       "auditHistory": []
+    },
+    {
+      "tag": "OFU-2569-0123",
+      "type": "Laptop",
+      "os": "Windows",
+      "model": "LENOVO model : 21SYS0MG00",
+      "serial": "PF67D5BD",
+      "cpu": "1x Intel® Core™ Ultra 5 225U",
+      "ram": "16 GB",
+      "storage": "470 GB",
+      "mac": "D494A97C8D4B",
+      "ip": "",
+      "status": "Deployed",
+      "assignedTo": "R69018",
+      "purchaseDate": "2026-10-16",
+      "warrantyDate": "2029-10-31",
+      "notes": "",
+      "security": null,
+      "auditHistory": []
     }
   ],
   "accessories": [],
@@ -476,6 +495,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795160938829",
+      "timestamp": "2026-11-20T07:48:58.829Z",
+      "category": "ASSET_MGMT",
+      "target": "OFU-2569-0123",
+      "details": "Added computer: LENOVO model : 21SYS0MG00 (PF67D5BD)"
+    },
     {
       "id": "LOG-1795160762710",
       "timestamp": "2026-11-20T07:46:02.710Z",
