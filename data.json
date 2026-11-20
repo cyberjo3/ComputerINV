@@ -99,7 +99,7 @@
       "cpu": "1x Intel® Core™ Ultra 5 225U",
       "ram": "16 GB",
       "storage": "470 GB",
-      "mac": "",
+      "mac": "E8BFE1991470",
       "ip": "",
       "status": "Ready to Deploy",
       "assignedTo": "",
@@ -400,6 +400,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795158041386",
+      "timestamp": "2026-11-20T07:00:41.386Z",
+      "category": "ASSET_MGMT",
+      "target": "OFU-2569-0056",
+      "details": "Updated specifications or assignment (Assigned to: Unassigned)"
+    },
     {
       "id": "LOG-1795157693475",
       "timestamp": "2026-11-20T06:54:53.475Z",
