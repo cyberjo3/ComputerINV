@@ -222,6 +222,25 @@
       "notes": "",
       "security": null,
       "auditHistory": []
+    },
+    {
+      "tag": "Pitipong",
+      "type": "Laptop",
+      "os": "Windows",
+      "model": "LENOVO model : 21SYS0MG00",
+      "serial": "PF62TKSC",
+      "cpu": "1x Intel® Core™ Ultra 5 225U",
+      "ram": "16 GB",
+      "storage": "470 GB",
+      "mac": "E8BFE19270BB",
+      "ip": "",
+      "status": "Deployed",
+      "assignedTo": "R69005",
+      "purchaseDate": "2026-03-02",
+      "warrantyDate": "2029-03-31",
+      "notes": "",
+      "security": null,
+      "auditHistory": []
     }
   ],
   "accessories": [],
@@ -514,6 +533,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795161750238",
+      "timestamp": "2026-11-20T08:02:30.238Z",
+      "category": "ASSET_MGMT",
+      "target": "Pitipong",
+      "details": "Added computer: LENOVO model : 21SYS0MG00 (PF62TKSC)"
+    },
     {
       "id": "LOG-1795161313358",
       "timestamp": "2026-11-20T07:55:13.358Z",
