@@ -241,6 +241,25 @@
       "notes": "",
       "security": null,
       "auditHistory": []
+    },
+    {
+      "tag": "WARANGKANA",
+      "type": "Laptop",
+      "os": "Windows",
+      "model": "LENOVO model : 21SYS0MG00",
+      "serial": "PF67JMDW",
+      "cpu": "1x Intel® Core™ Ultra 5 225U",
+      "ram": "16 GB",
+      "storage": "470 GB",
+      "mac": "D494A9885D06",
+      "ip": "",
+      "status": "Deployed",
+      "assignedTo": "R69021",
+      "purchaseDate": "2026-10-16",
+      "warrantyDate": "2029-10-31",
+      "notes": "",
+      "security": null,
+      "auditHistory": []
     }
   ],
   "accessories": [],
@@ -533,6 +552,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795162139686",
+      "timestamp": "2026-11-20T08:08:59.686Z",
+      "category": "ASSET_MGMT",
+      "target": "WARANGKANA",
+      "details": "Added computer: LENOVO model : 21SYS0MG00 (PF67JMDW)"
+    },
     {
       "id": "LOG-1795161750238",
       "timestamp": "2026-11-20T08:02:30.238Z",
