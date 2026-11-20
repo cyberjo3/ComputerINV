@@ -279,6 +279,25 @@
       "notes": "",
       "security": null,
       "auditHistory": []
+    },
+    {
+      "tag": "RAKKAR-MANTANA",
+      "type": "Laptop",
+      "os": "Windows",
+      "model": "LENOVO model : 21SYS0MG00",
+      "serial": "PF66NGYM",
+      "cpu": "1x Intel® Core™ Ultra 5 225U",
+      "ram": "16 GB",
+      "storage": "470 GB",
+      "mac": "D494A94F4485",
+      "ip": "",
+      "status": "Ready to Deploy",
+      "assignedTo": "R69013",
+      "purchaseDate": "2026-01-05",
+      "warrantyDate": "2029-01-31",
+      "notes": "",
+      "security": null,
+      "auditHistory": []
     }
   ],
   "accessories": [],
@@ -571,6 +590,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795162389224",
+      "timestamp": "2026-11-20T08:13:09.224Z",
+      "category": "ASSET_MGMT",
+      "target": "RAKKAR-MANTANA",
+      "details": "Added computer: LENOVO model : 21SYS0MG00 (PF66NGYM)"
+    },
     {
       "id": "LOG-1795162293422",
       "timestamp": "2026-11-20T08:11:33.422Z",
