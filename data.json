@@ -260,6 +260,25 @@
       "notes": "",
       "security": null,
       "auditHistory": []
+    },
+    {
+      "tag": "THUWAPORN",
+      "type": "Laptop",
+      "os": "macOS",
+      "model": "LENOVO model : 21SYS0MG00",
+      "serial": "PF66NH28",
+      "cpu": "1x Intel® Core™ Ultra 5 225U",
+      "ram": "16 GB",
+      "storage": "470 GB",
+      "mac": "D494A94DDE10",
+      "ip": "",
+      "status": "Deployed",
+      "assignedTo": "T003",
+      "purchaseDate": "2026-06-01",
+      "warrantyDate": "2029-06-30",
+      "notes": "",
+      "security": null,
+      "auditHistory": []
     }
   ],
   "accessories": [],
@@ -552,6 +571,20 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795162293422",
+      "timestamp": "2026-11-20T08:11:33.422Z",
+      "category": "ASSET_MGMT",
+      "target": "THUWAPORN",
+      "details": "Added computer: LENOVO model : 21SYS0MG00 (PF66NH28)"
+    },
+    {
+      "id": "LOG-1795162192683",
+      "timestamp": "2026-11-20T08:09:52.683Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session authenticated via Passcode"
+    },
     {
       "id": "LOG-1795162139686",
       "timestamp": "2026-11-20T08:08:59.686Z",
