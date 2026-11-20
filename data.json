@@ -165,6 +165,25 @@
       "notes": "",
       "security": null,
       "auditHistory": []
+    },
+    {
+      "tag": "OFU-2569-0055",
+      "type": "Laptop",
+      "os": "Windows",
+      "model": "LENOVO model : 21SYS0MG00",
+      "serial": "PF62VJH8",
+      "cpu": "1x Intel® Core™ Ultra 5 225U",
+      "ram": "16 GB",
+      "storage": "470 GB",
+      "mac": "E8BFE197A883",
+      "ip": "",
+      "status": "Ready to Deploy",
+      "assignedTo": "R69017",
+      "purchaseDate": "2026-10-16",
+      "warrantyDate": "2029-10-31",
+      "notes": "",
+      "security": null,
+      "auditHistory": []
     }
   ],
   "accessories": [],
@@ -457,6 +476,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795160762710",
+      "timestamp": "2026-11-20T07:46:02.710Z",
+      "category": "ASSET_MGMT",
+      "target": "OFU-2569-0055",
+      "details": "Added computer: LENOVO model : 21SYS0MG00 (PF62VJH8)"
+    },
     {
       "id": "LOG-1795160658482",
       "timestamp": "2026-11-20T07:44:18.482Z",
