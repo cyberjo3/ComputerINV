@@ -146,6 +146,25 @@
       "notes": "",
       "security": null,
       "auditHistory": []
+    },
+    {
+      "tag": "Meetawee",
+      "type": "Laptop",
+      "os": "Windows",
+      "model": "LENOVO model : 21SYS0MG00",
+      "serial": "PF68NMZ5",
+      "cpu": "1x Intel® Core™ Ultra 5 225U",
+      "ram": "16 GB",
+      "storage": "470 GB",
+      "mac": "D494A986EDD1",
+      "ip": "",
+      "status": "Deployed",
+      "assignedTo": "R69023",
+      "purchaseDate": "2026-10-16",
+      "warrantyDate": "2029-10-31",
+      "notes": "",
+      "security": null,
+      "auditHistory": []
     }
   ],
   "accessories": [],
@@ -438,6 +457,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795160658482",
+      "timestamp": "2026-11-20T07:44:18.482Z",
+      "category": "ASSET_MGMT",
+      "target": "Meetawee",
+      "details": "Added computer: LENOVO model : 21SYS0MG00 (PF68NMZ5)"
+    },
     {
       "id": "LOG-1795160550725",
       "timestamp": "2026-11-20T07:42:30.725Z",
