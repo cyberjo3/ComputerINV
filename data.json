@@ -336,6 +336,25 @@
       "notes": "",
       "security": null,
       "auditHistory": []
+    },
+    {
+      "tag": "COM-2026-0010",
+      "type": "Laptop",
+      "os": "macOS",
+      "model": "\"MacBook Air 13-inch  AppelCare (Warranty  1 Year 2 Apr 2027)\"",
+      "serial": "FMGF59DFY4",
+      "cpu": "M4 chip with 8 core CPU",
+      "ram": "16 GB",
+      "storage": "512 GB",
+      "mac": "685edd67f870",
+      "ip": "",
+      "status": "Deployed",
+      "assignedTo": "R69003",
+      "purchaseDate": "2026-04-03",
+      "warrantyDate": "2027-04-03",
+      "notes": "",
+      "security": null,
+      "auditHistory": []
     }
   ],
   "accessories": [],
@@ -628,6 +647,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795406725292",
+      "timestamp": "2026-11-23T04:05:25.292Z",
+      "category": "ASSET_MGMT",
+      "target": "COM-2026-0010",
+      "details": "Added computer: \"MacBook Air 13-inch  AppelCare (Warranty  1 Year 2 Apr 2027)\" (FMGF59DFY4)"
+    },
     {
       "id": "LOG-1795405955504",
       "timestamp": "2026-11-23T03:52:35.504Z",
