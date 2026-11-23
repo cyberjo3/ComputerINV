@@ -317,6 +317,25 @@
       "notes": "",
       "security": null,
       "auditHistory": []
+    },
+    {
+      "tag": "COM-2022-0001",
+      "type": "Laptop",
+      "os": "macOS",
+      "model": "\"MacBook Pro 14-inch  (Warranty 1 Year)  M1 Pro (SCPG2ZX/A)\"",
+      "serial": "X0R0WNR991",
+      "cpu": "M1 Pro chip 8-core CPU",
+      "ram": "16 GB",
+      "storage": "512 GB",
+      "mac": "c889f3aeab2c",
+      "ip": "",
+      "status": "Deployed",
+      "assignedTo": "R69008",
+      "purchaseDate": "2022-01-08",
+      "warrantyDate": "2025-01-08",
+      "notes": "",
+      "security": null,
+      "auditHistory": []
     }
   ],
   "accessories": [],
@@ -609,6 +628,20 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795405955504",
+      "timestamp": "2026-11-23T03:52:35.504Z",
+      "category": "ASSET_MGMT",
+      "target": "COM-2022-0001",
+      "details": "Added computer: \"MacBook Pro 14-inch  (Warranty 1 Year)  M1 Pro (SCPG2ZX/A)\" (X0R0WNR991)"
+    },
+    {
+      "id": "LOG-1795405384953",
+      "timestamp": "2026-11-23T03:43:04.953Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session authenticated via Passcode"
+    },
     {
       "id": "LOG-1795162466324",
       "timestamp": "2026-11-20T08:14:26.324Z",
