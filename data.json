@@ -374,6 +374,25 @@
       "notes": "",
       "security": null,
       "auditHistory": []
+    },
+    {
+      "tag": "COM-2026-0008",
+      "type": "Laptop",
+      "os": "macOS",
+      "model": "MacBook Air 13-inch",
+      "serial": "CWFH66172X",
+      "cpu": "M4 chip with 8 core CPU",
+      "ram": "16 GB",
+      "storage": "512 GB",
+      "mac": "dc9396042fe6",
+      "ip": "",
+      "status": "Deployed",
+      "assignedTo": "R69001",
+      "purchaseDate": "2026-03-06",
+      "warrantyDate": "2027-04-07",
+      "notes": "",
+      "security": null,
+      "auditHistory": []
     }
   ],
   "accessories": [],
@@ -666,6 +685,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795407849734",
+      "timestamp": "2026-11-23T04:24:09.734Z",
+      "category": "ASSET_MGMT",
+      "target": "COM-2026-0008",
+      "details": "Added computer: MacBook Air 13-inch (CWFH66172X)"
+    },
     {
       "id": "LOG-1795407381491",
       "timestamp": "2026-11-23T04:16:21.491Z",
