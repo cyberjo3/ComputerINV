@@ -355,6 +355,25 @@
       "notes": "",
       "security": null,
       "auditHistory": []
+    },
+    {
+      "tag": "H9P2X21WXG",
+      "type": "Laptop",
+      "os": "macOS",
+      "model": "MacBook Pro (14-inch, M5)",
+      "serial": "H9P2X21WXG",
+      "cpu": "M5 chip with 8 core CPU",
+      "ram": "16 GB",
+      "storage": "512 GB",
+      "mac": "5c9ba664fd30",
+      "ip": "",
+      "status": "Deployed",
+      "assignedTo": "T001",
+      "purchaseDate": "2026-04-03",
+      "warrantyDate": "2027-04-07",
+      "notes": "",
+      "security": null,
+      "auditHistory": []
     }
   ],
   "accessories": [],
@@ -647,6 +666,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795407381491",
+      "timestamp": "2026-11-23T04:16:21.491Z",
+      "category": "ASSET_MGMT",
+      "target": "H9P2X21WXG",
+      "details": "Added computer: MacBook Pro (14-inch, M5) (H9P2X21WXG)"
+    },
     {
       "id": "LOG-1795406725292",
       "timestamp": "2026-11-23T04:05:25.292Z",
