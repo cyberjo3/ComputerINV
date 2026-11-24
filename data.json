@@ -393,6 +393,25 @@
       "notes": "",
       "security": null,
       "auditHistory": []
+    },
+    {
+      "tag": "COM-2022-0002",
+      "type": "Laptop",
+      "os": "macOS",
+      "model": "MacBook Pro 14-inch",
+      "serial": "X54NDQ5PX1",
+      "cpu": "M1 Pro chip 8-core CPU",
+      "ram": "16 GB",
+      "storage": "512 GB",
+      "mac": "c889f3a7d99b",
+      "ip": "",
+      "status": "Deployed",
+      "assignedTo": "R69016",
+      "purchaseDate": "2022-01-08",
+      "warrantyDate": "2023-01-08",
+      "notes": "",
+      "security": null,
+      "auditHistory": []
     }
   ],
   "accessories": [],
@@ -685,6 +704,20 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795486797347",
+      "timestamp": "2026-11-24T02:19:57.347Z",
+      "category": "ASSET_MGMT",
+      "target": "COM-2022-0002",
+      "details": "Added computer: MacBook Pro 14-inch (X54NDQ5PX1)"
+    },
+    {
+      "id": "LOG-1795486520771",
+      "timestamp": "2026-11-24T02:15:20.771Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session authenticated via Passcode"
+    },
     {
       "id": "LOG-1795407849734",
       "timestamp": "2026-11-23T04:24:09.734Z",
