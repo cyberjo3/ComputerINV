@@ -139,11 +139,11 @@
       "storage": "470 GB",
       "mac": "D494A98A0E7B",
       "ip": "",
-      "status": "Ready to Deploy",
-      "assignedTo": "",
+      "status": "Deployed",
+      "assignedTo": "R69005",
       "purchaseDate": "2026-10-05",
       "warrantyDate": "2029-10-31",
-      "notes": "",
+      "notes": "Give pitipong for tempolary for check ofc",
       "security": null,
       "auditHistory": []
     },
@@ -837,6 +837,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795595114484",
+      "timestamp": "2026-11-25T08:25:14.484Z",
+      "category": "ASSET_MGMT",
+      "target": "COM-00001-013",
+      "details": "Updated specifications or assignment (Assigned to: R69005)"
+    },
     {
       "id": "LOG-1795595037033",
       "timestamp": "2026-11-25T08:23:57.033Z",
