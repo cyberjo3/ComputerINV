@@ -431,6 +431,25 @@
       "notes": "",
       "security": null,
       "auditHistory": []
+    },
+    {
+      "tag": "COM-2026-0011",
+      "type": "Laptop",
+      "os": "macOS",
+      "model": "MacBook Air 13-inch",
+      "serial": "FJVJ1XHC24",
+      "cpu": "M4 chip with 8 core CPU",
+      "ram": "16 GB",
+      "storage": "512 GB",
+      "mac": "685edd5636a5",
+      "ip": "",
+      "status": "Deployed",
+      "assignedTo": "R69022",
+      "purchaseDate": "2026-11-16",
+      "warrantyDate": "",
+      "notes": "",
+      "security": null,
+      "auditHistory": []
     }
   ],
   "accessories": [],
@@ -723,6 +742,27 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795593709340",
+      "timestamp": "2026-11-25T08:01:49.340Z",
+      "category": "ASSET_MGMT",
+      "target": "COM-2026-0011",
+      "details": "Added computer: MacBook Air 13-inch (FJVJ1XHC24)"
+    },
+    {
+      "id": "LOG-1795593549015",
+      "timestamp": "2026-11-25T07:59:09.015Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session authenticated via Passcode"
+    },
+    {
+      "id": "LOG-1795593540845",
+      "timestamp": "2026-11-25T07:59:00.845Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session logged out and data synchronized"
+    },
     {
       "id": "LOG-1795593492725",
       "timestamp": "2026-11-25T07:58:12.725Z",
