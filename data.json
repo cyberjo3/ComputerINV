@@ -414,7 +414,7 @@
       "auditHistory": []
     },
     {
-      "tag": "COM-2026-0011",
+      "tag": "COM-2569-0068",
       "type": "Laptop",
       "os": "macOS",
       "model": "MacBook Air 13-inch",
@@ -837,6 +837,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795599445374",
+      "timestamp": "2026-11-25T09:37:25.374Z",
+      "category": "ASSET_MGMT",
+      "target": "COM-2569-0068",
+      "details": "Updated specifications or assignment (Assigned to: R69022)"
+    },
     {
       "id": "LOG-1795599408404",
       "timestamp": "2026-11-25T09:36:48.404Z",
