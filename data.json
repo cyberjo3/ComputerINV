@@ -262,7 +262,7 @@
       "auditHistory": []
     },
     {
-      "tag": "THUWAPORN",
+      "tag": "COM-2026-0022",
       "type": "Laptop",
       "os": "macOS",
       "model": "LENOVO model : 21SYS0MG00",
@@ -723,6 +723,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795593259573",
+      "timestamp": "2026-11-25T07:54:19.573Z",
+      "category": "ASSET_MGMT",
+      "target": "COM-2026-0022",
+      "details": "Updated specifications or assignment (Assigned to: T003)"
+    },
     {
       "id": "LOG-1795593243658",
       "timestamp": "2026-11-25T07:54:03.658Z",
