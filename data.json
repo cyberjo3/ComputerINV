@@ -376,7 +376,7 @@
       "auditHistory": []
     },
     {
-      "tag": "COM-2022-0002",
+      "tag": "COM-00001=002",
       "type": "Laptop",
       "os": "macOS",
       "model": "MacBook Pro 14-inch",
@@ -837,6 +837,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795598380258",
+      "timestamp": "2026-11-25T09:19:40.258Z",
+      "category": "ASSET_MGMT",
+      "target": "COM-00001=002",
+      "details": "Updated specifications or assignment (Assigned to: R69016)"
+    },
     {
       "id": "LOG-1795598347884",
       "timestamp": "2026-11-25T09:19:07.884Z",
