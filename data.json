@@ -243,7 +243,7 @@
       "auditHistory": []
     },
     {
-      "tag": "COM-2026-0022",
+      "tag": "OFU-2569-0089",
       "type": "Laptop",
       "os": "macOS",
       "model": "LENOVO model : 21SYS0MG00",
@@ -837,6 +837,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795599281677",
+      "timestamp": "2026-11-25T09:34:41.677Z",
+      "category": "ASSET_MGMT",
+      "target": "OFU-2569-0089",
+      "details": "Updated specifications or assignment (Assigned to: T003)"
+    },
     {
       "id": "LOG-1795599249324",
       "timestamp": "2026-11-25T09:34:09.324Z",
