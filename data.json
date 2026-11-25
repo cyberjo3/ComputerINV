@@ -452,7 +452,7 @@
       "auditHistory": []
     },
     {
-      "tag": "COM-2026-0025",
+      "tag": "OFU-2569-0092",
       "type": "Laptop",
       "os": "macOS",
       "model": "MacBook Pro 14-inch M5",
@@ -856,6 +856,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795599869026",
+      "timestamp": "2026-11-25T09:44:29.026Z",
+      "category": "ASSET_MGMT",
+      "target": "OFU-2569-0092",
+      "details": "Updated specifications or assignment (Assigned to: R69010)"
+    },
     {
       "id": "LOG-1795599823368",
       "timestamp": "2026-11-25T09:43:43.368Z",
