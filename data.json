@@ -272,7 +272,7 @@
       "storage": "470 GB",
       "mac": "D494A94F4485",
       "ip": "",
-      "status": "Ready to Deploy",
+      "status": "Deployed",
       "assignedTo": "R69013",
       "purchaseDate": "2026-01-05",
       "warrantyDate": "2029-01-31",
@@ -837,6 +837,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795595972133",
+      "timestamp": "2026-11-25T08:39:32.133Z",
+      "category": "ASSET_MGMT",
+      "target": "COM-2026-0021",
+      "details": "Updated specifications or assignment (Assigned to: R69013)"
+    },
     {
       "id": "LOG-1795595963949",
       "timestamp": "2026-11-25T08:39:23.949Z",
