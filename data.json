@@ -300,7 +300,7 @@
       "auditHistory": []
     },
     {
-      "tag": "COM-00001-001",
+      "tag": "COM-0001-001",
       "type": "Laptop",
       "os": "macOS",
       "model": "\"MacBook Pro 14-inch  (Warranty 1 Year)  M1 Pro (SCPG2ZX/A)\"",
@@ -857,18 +857,25 @@
   ],
   "logs": [
     {
-      "id": "LOG-1795600453637",
-      "timestamp": "2026-11-25T09:54:13.637Z",
+      "id": "LOG-1795601423416",
+      "timestamp": "2026-11-25T10:10:23.416Z",
       "category": "ASSET_MGMT",
-      "target": "COM-00001-001",
+      "target": "COM-0001-001",
       "details": "Updated specifications or assignment (Assigned to: R69008)"
     },
     {
-      "id": "LOG-1795600422618",
-      "timestamp": "2026-11-25T09:53:42.618Z",
+      "id": "LOG-1795600075068",
+      "timestamp": "2026-11-25T09:47:55.068Z",
       "category": "SECURITY",
       "target": "SYSTEM",
       "details": "Session authenticated via Passcode"
+    },
+    {
+      "id": "LOG-1795600065206",
+      "timestamp": "2026-11-25T09:47:45.206Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session logged out and data synchronized"
     },
     {
       "id": "LOG-1795600051062",
