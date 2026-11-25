@@ -526,6 +526,25 @@
       "notes": "",
       "security": null,
       "auditHistory": []
+    },
+    {
+      "tag": "COM-2026-0015",
+      "type": "Laptop",
+      "os": "Windows",
+      "model": "LENOVO model : 21SYS0MG00",
+      "serial": "PF68M272",
+      "cpu": "1x Intel® Core™ Ultra 5 225U",
+      "ram": "16 GB",
+      "storage": "470 GB",
+      "mac": "",
+      "ip": "",
+      "status": "Ready to Deploy",
+      "assignedTo": "",
+      "purchaseDate": "2026-10-28",
+      "warrantyDate": "2027-10-28",
+      "notes": "",
+      "security": null,
+      "auditHistory": []
     }
   ],
   "accessories": [],
@@ -818,6 +837,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795595804123",
+      "timestamp": "2026-11-25T08:36:44.123Z",
+      "category": "ASSET_MGMT",
+      "target": "COM-2026-0015",
+      "details": "Added computer: LENOVO model : 21SYS0MG00 (PF68M272)"
+    },
     {
       "id": "LOG-1795595498507",
       "timestamp": "2026-11-25T08:31:38.507Z",
