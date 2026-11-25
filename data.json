@@ -469,6 +469,25 @@
       "notes": "",
       "security": null,
       "auditHistory": []
+    },
+    {
+      "tag": "COM-2026-0025",
+      "type": "Laptop",
+      "os": "macOS",
+      "model": "MacBook Pro 14-inch M5",
+      "serial": "H4M70WJQ6F",
+      "cpu": "M5 chip with 8 core CPU",
+      "ram": "16 GB",
+      "storage": "1 TB",
+      "mac": "5c9ba68f3221",
+      "ip": "",
+      "status": "Ready to Deploy",
+      "assignedTo": "R69010",
+      "purchaseDate": "2026-03-01",
+      "warrantyDate": "",
+      "notes": "",
+      "security": null,
+      "auditHistory": []
     }
   ],
   "accessories": [],
@@ -761,6 +780,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795594021111",
+      "timestamp": "2026-11-25T08:07:01.111Z",
+      "category": "ASSET_MGMT",
+      "target": "COM-2026-0025",
+      "details": "Added computer: MacBook Pro 14-inch M5 (H4M70WJQ6F)"
+    },
     {
       "id": "LOG-1795593879749",
       "timestamp": "2026-11-25T08:04:39.749Z",
