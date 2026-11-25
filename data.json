@@ -53,7 +53,7 @@
       ]
     },
     {
-      "tag": "COM-2026-0020",
+      "tag": "COM-00001-086",
       "type": "Laptop",
       "os": "Windows",
       "model": "LENOVO model : 21SYS0MG00 E14",
@@ -837,6 +837,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795599189191",
+      "timestamp": "2026-11-25T09:33:09.191Z",
+      "category": "ASSET_MGMT",
+      "target": "COM-00001-086",
+      "details": "Updated specifications or assignment (Assigned to: R69009)"
+    },
     {
       "id": "LOG-1795599124752",
       "timestamp": "2026-11-25T09:32:04.752Z",
