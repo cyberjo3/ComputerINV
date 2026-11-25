@@ -507,6 +507,25 @@
       "notes": "",
       "security": null,
       "auditHistory": []
+    },
+    {
+      "tag": "COM-2026-0026",
+      "type": "Laptop",
+      "os": "macOS",
+      "model": "MacBook Pro 14-inch M5",
+      "serial": "DD43763V70",
+      "cpu": "M5 chip with 8 core CPU",
+      "ram": "16 GB",
+      "storage": "1 TB",
+      "mac": "5c9ba68f8638",
+      "ip": "",
+      "status": "Deployed",
+      "assignedTo": "R69015",
+      "purchaseDate": "2026-09-01",
+      "warrantyDate": "",
+      "notes": "",
+      "security": null,
+      "auditHistory": []
     }
   ],
   "accessories": [],
@@ -799,6 +818,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795594368871",
+      "timestamp": "2026-11-25T08:12:48.871Z",
+      "category": "ASSET_MGMT",
+      "target": "COM-2026-0026",
+      "details": "Added computer: MacBook Pro 14-inch M5 (DD43763V70)"
+    },
     {
       "id": "LOG-1795594236693",
       "timestamp": "2026-11-25T08:10:36.693Z",
