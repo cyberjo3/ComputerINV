@@ -433,7 +433,7 @@
       "auditHistory": []
     },
     {
-      "tag": "COM-2026-0027",
+      "tag": "COM-00001-008",
       "type": "Laptop",
       "os": "macOS",
       "model": "MacBook Pro 14-inch M5",
@@ -837,6 +837,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795598562238",
+      "timestamp": "2026-11-25T09:22:42.238Z",
+      "category": "ASSET_MGMT",
+      "target": "COM-00001-008",
+      "details": "Updated specifications or assignment (Assigned to: R69006)"
+    },
     {
       "id": "LOG-1795598380258",
       "timestamp": "2026-11-25T09:19:40.258Z",
