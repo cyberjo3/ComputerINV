@@ -838,6 +838,13 @@
   ],
   "logs": [
     {
+      "id": "LOG-1795598605181",
+      "timestamp": "2026-11-25T09:23:25.181Z",
+      "category": "ASSET_MGMT",
+      "target": "COM-00001-012",
+      "details": "Updated specifications or assignment (Assigned to: R69021)"
+    },
+    {
       "id": "LOG-1795598562238",
       "timestamp": "2026-11-25T09:22:42.238Z",
       "category": "ASSET_MGMT",
