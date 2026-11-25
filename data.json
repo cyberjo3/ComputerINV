@@ -243,7 +243,7 @@
       "auditHistory": []
     },
     {
-      "tag": "WARANGKANA",
+      "tag": "COM-00001-012",
       "type": "Laptop",
       "os": "Windows",
       "model": "LENOVO model : 21SYS0MG00",
@@ -723,6 +723,20 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795593139950",
+      "timestamp": "2026-11-25T07:52:19.950Z",
+      "category": "ASSET_MGMT",
+      "target": "COM-00001-012",
+      "details": "Updated specifications or assignment (Assigned to: R69021)"
+    },
+    {
+      "id": "LOG-1795590357286",
+      "timestamp": "2026-11-25T07:05:57.286Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session authenticated via Passcode"
+    },
     {
       "id": "LOG-1795487016535",
       "timestamp": "2026-11-24T02:23:36.535Z",
