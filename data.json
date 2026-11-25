@@ -158,7 +158,7 @@
       "storage": "470 GB",
       "mac": "E8BFE197A883",
       "ip": "",
-      "status": "Ready to Deploy",
+      "status": "Deployed",
       "assignedTo": "R69017",
       "purchaseDate": "2026-10-16",
       "warrantyDate": "2029-10-31",
@@ -837,6 +837,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795595951168",
+      "timestamp": "2026-11-25T08:39:11.168Z",
+      "category": "ASSET_MGMT",
+      "target": "OFU-2569-0055",
+      "details": "Updated specifications or assignment (Assigned to: R69017)"
+    },
     {
       "id": "LOG-1795595882509",
       "timestamp": "2026-11-25T08:38:02.509Z",
