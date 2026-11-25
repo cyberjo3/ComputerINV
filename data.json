@@ -300,11 +300,11 @@
       "auditHistory": []
     },
     {
-      "tag": "COM-2022-0001",
+      "tag": "COM-จจจจๅขจจๅ",
       "type": "Laptop",
       "os": "macOS",
       "model": "\"MacBook Pro 14-inch  (Warranty 1 Year)  M1 Pro (SCPG2ZX/A)\"",
-      "serial": "X0R0WNR991",
+      "serial": "sX0R0WNR991",
       "cpu": "M1 Pro chip 8-core CPU",
       "ram": "16 GB",
       "storage": "512 GB",
@@ -837,6 +837,27 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795598347884",
+      "timestamp": "2026-11-25T09:19:07.884Z",
+      "category": "ASSET_MGMT",
+      "target": "COM-จจจจๅขจจๅ",
+      "details": "Updated specifications or assignment (Assigned to: R69008)"
+    },
+    {
+      "id": "LOG-1795597429592",
+      "timestamp": "2026-11-25T09:03:49.592Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session authenticated via Passcode"
+    },
+    {
+      "id": "LOG-1795597418507",
+      "timestamp": "2026-11-25T09:03:38.507Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session logged out and data synchronized"
+    },
     {
       "id": "LOG-1795597411028",
       "timestamp": "2026-11-25T09:03:31.028Z",
