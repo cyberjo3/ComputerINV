@@ -526,6 +526,25 @@
       "notes": "",
       "security": null,
       "auditHistory": []
+    },
+    {
+      "tag": "COM-2026-0015",
+      "type": "Laptop",
+      "os": "Windows",
+      "model": "LENOVO model : 21SYS0MG00",
+      "serial": "PF62W6MW",
+      "cpu": "1x Intel® Core™ Ultra 5 225U",
+      "ram": "16 GB",
+      "storage": "470 GB",
+      "mac": "",
+      "ip": "",
+      "status": "Ready to Deploy",
+      "assignedTo": "",
+      "purchaseDate": "2026-04-07",
+      "warrantyDate": "",
+      "notes": "",
+      "security": null,
+      "auditHistory": []
     }
   ],
   "accessories": [],
@@ -818,6 +837,27 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795595037033",
+      "timestamp": "2026-11-25T08:23:57.033Z",
+      "category": "ASSET_MGMT",
+      "target": "COM-2026-0015",
+      "details": "Added computer: LENOVO model : 21SYS0MG00 (PF62W6MW)"
+    },
+    {
+      "id": "LOG-1795594391956",
+      "timestamp": "2026-11-25T08:13:11.956Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session authenticated via Passcode"
+    },
+    {
+      "id": "LOG-1795594385534",
+      "timestamp": "2026-11-25T08:13:05.534Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session logged out and data synchronized"
+    },
     {
       "id": "LOG-1795594368871",
       "timestamp": "2026-11-25T08:12:48.871Z",
