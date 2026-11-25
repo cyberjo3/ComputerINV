@@ -20,7 +20,7 @@
       "auditHistory": []
     },
     {
-      "tag": "COM-2026-0019",
+      "tag": "OFU-2569-0086",
       "type": "Laptop",
       "os": "Windows",
       "model": "LENOVO model : 21SYS0MG00",
@@ -837,6 +837,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795599075603",
+      "timestamp": "2026-11-25T09:31:15.603Z",
+      "category": "ASSET_MGMT",
+      "target": "OFU-2569-0086",
+      "details": "Updated specifications or assignment (Assigned to: R69007)"
+    },
     {
       "id": "LOG-1795599011846",
       "timestamp": "2026-11-25T09:30:11.846Z",
