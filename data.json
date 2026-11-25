@@ -133,7 +133,7 @@
       "type": "Laptop",
       "os": "Windows",
       "model": "LENOVO model : 21SYS0MG00",
-      "serial": "PF68M27B",
+      "serial": "PF62TA96",
       "cpu": "1x Intel® Core™ Ultra 5 225U",
       "ram": "16 GB",
       "storage": "470 GB",
@@ -723,6 +723,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795593434144",
+      "timestamp": "2026-11-25T07:57:14.144Z",
+      "category": "ASSET_MGMT",
+      "target": "COM-00001-013",
+      "details": "Updated specifications or assignment (Assigned to: Unassigned)"
+    },
     {
       "id": "LOG-1795593275944",
       "timestamp": "2026-11-25T07:54:35.944Z",
