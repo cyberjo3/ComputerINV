@@ -450,6 +450,25 @@
       "notes": "",
       "security": null,
       "auditHistory": []
+    },
+    {
+      "tag": "COM-2026-0027",
+      "type": "Laptop",
+      "os": "macOS",
+      "model": "MacBook Pro 14-inch M5",
+      "serial": "4GMX1VQLG",
+      "cpu": "M5",
+      "ram": "16 GB",
+      "storage": "1 TB",
+      "mac": "5c9ba67436fa",
+      "ip": "",
+      "status": "Deployed",
+      "assignedTo": "R69006",
+      "purchaseDate": "2026-03-01",
+      "warrantyDate": "",
+      "notes": "",
+      "security": null,
+      "auditHistory": []
     }
   ],
   "accessories": [],
@@ -742,6 +761,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795593879749",
+      "timestamp": "2026-11-25T08:04:39.749Z",
+      "category": "ASSET_MGMT",
+      "target": "COM-2026-0027",
+      "details": "Added computer: MacBook Pro 14-inch M5 (4GMX1VQLG)"
+    },
     {
       "id": "LOG-1795593709340",
       "timestamp": "2026-11-25T08:01:49.340Z",
