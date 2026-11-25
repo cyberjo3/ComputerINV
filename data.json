@@ -322,7 +322,7 @@
       "tag": "OFU-2569-0066",
       "type": "Laptop",
       "os": "macOS",
-      "model": "\"MacBook Air 13-inch  AppelCare (Warranty  1 Year 2 Apr 2027)\"",
+      "model": "\"MacBook Air 13-inch",
       "serial": "FMGF59DFY4",
       "cpu": "M4 chip with 8 core CPU",
       "ram": "16 GB",
@@ -856,6 +856,27 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795601586720",
+      "timestamp": "2026-11-25T10:13:06.720Z",
+      "category": "ASSET_MGMT",
+      "target": "OFU-2569-0066",
+      "details": "Updated specifications or assignment (Assigned to: R69003)"
+    },
+    {
+      "id": "LOG-1795601484852",
+      "timestamp": "2026-11-25T10:11:24.852Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session authenticated via Passcode"
+    },
+    {
+      "id": "LOG-1795601479052",
+      "timestamp": "2026-11-25T10:11:19.052Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session logged out and data synchronized"
+    },
     {
       "id": "LOG-1795601463202",
       "timestamp": "2026-11-25T10:11:03.202Z",
