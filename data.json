@@ -1,25 +1,6 @@
 {
   "assets": [
     {
-      "tag": "COM-2026-0013",
-      "type": "Laptop",
-      "os": "Windows",
-      "model": "LENOVO model : 21SYS0MG00",
-      "serial": "PF62TA96",
-      "cpu": "1x Intel® Core™ Ultra 5 225U",
-      "ram": "16 GB",
-      "storage": "470 GB",
-      "mac": "E8BFE19462F4",
-      "ip": "",
-      "status": "Ready to Deploy",
-      "assignedTo": "",
-      "purchaseDate": "2026-11-01",
-      "warrantyDate": "2029-08-31",
-      "notes": "",
-      "security": null,
-      "auditHistory": []
-    },
-    {
       "tag": "COM-2026-0018",
       "type": "Laptop",
       "os": "Windows",
@@ -837,6 +818,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795595278492",
+      "timestamp": "2026-11-25T08:27:58.492Z",
+      "category": "ASSET_MGMT",
+      "target": "COM-2026-0013",
+      "details": "Deleted computer: LENOVO model : 21SYS0MG00 (S/N: PF62TA96)"
+    },
     {
       "id": "LOG-1795595114484",
       "timestamp": "2026-11-25T08:25:14.484Z",
