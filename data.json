@@ -1,7 +1,7 @@
 {
   "assets": [
     {
-      "tag": "COM-2026-0018",
+      "tag": "OFU-2569-0084",
       "type": "Laptop",
       "os": "Windows",
       "model": "LENOVO model : 21SYS0MG00",
@@ -837,6 +837,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795599011846",
+      "timestamp": "2026-11-25T09:30:11.846Z",
+      "category": "ASSET_MGMT",
+      "target": "OFU-2569-0084",
+      "details": "Updated specifications or assignment (Assigned to: Unassigned)"
+    },
     {
       "id": "LOG-1795598959862",
       "timestamp": "2026-11-25T09:29:19.862Z",
