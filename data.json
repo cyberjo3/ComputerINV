@@ -110,7 +110,7 @@
       "auditHistory": []
     },
     {
-      "tag": "OFU-2569-0054",
+      "tag": "OFU-2569-0053",
       "type": "Laptop",
       "os": "Windows",
       "model": "LENOVO model : 21SYS0MG00",
@@ -837,6 +837,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795598789518",
+      "timestamp": "2026-11-25T09:26:29.518Z",
+      "category": "ASSET_MGMT",
+      "target": "OFU-2569-0053",
+      "details": "Updated specifications or assignment (Assigned to: R69005)"
+    },
     {
       "id": "LOG-1795598605181",
       "timestamp": "2026-11-25T09:23:25.181Z",
