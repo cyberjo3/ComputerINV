@@ -857,6 +857,13 @@
   ],
   "logs": [
     {
+      "id": "LOG-1795601935217",
+      "timestamp": "2026-11-25T10:18:55.217Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session authenticated via Passcode"
+    },
+    {
       "id": "LOG-1795601787448",
       "timestamp": "2026-11-25T10:16:27.448Z",
       "category": "SECURITY",
