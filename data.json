@@ -300,7 +300,7 @@
       "auditHistory": []
     },
     {
-      "tag": "COM-จจจจๅขจจๅ",
+      "tag": "COM-00001-001",
       "type": "Laptop",
       "os": "macOS",
       "model": "\"MacBook Pro 14-inch  (Warranty 1 Year)  M1 Pro (SCPG2ZX/A)\"",
@@ -856,6 +856,20 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795600453637",
+      "timestamp": "2026-11-25T09:54:13.637Z",
+      "category": "ASSET_MGMT",
+      "target": "COM-00001-001",
+      "details": "Updated specifications or assignment (Assigned to: R69008)"
+    },
+    {
+      "id": "LOG-1795600422618",
+      "timestamp": "2026-11-25T09:53:42.618Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session authenticated via Passcode"
+    },
     {
       "id": "LOG-1795600051062",
       "timestamp": "2026-11-25T09:47:31.062Z",
