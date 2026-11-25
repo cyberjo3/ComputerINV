@@ -148,7 +148,7 @@
       "auditHistory": []
     },
     {
-      "tag": "Meetawee",
+      "tag": "COM-00001-014",
       "type": "Laptop",
       "os": "Windows",
       "model": "LENOVO model : 21SYS0MG00",
@@ -723,6 +723,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795593208451",
+      "timestamp": "2026-11-25T07:53:28.451Z",
+      "category": "ASSET_MGMT",
+      "target": "COM-00001-014",
+      "details": "Updated specifications or assignment (Assigned to: R69023)"
+    },
     {
       "id": "LOG-1795593185891",
       "timestamp": "2026-11-25T07:53:05.891Z",
