@@ -462,7 +462,7 @@
       "storage": "1 TB",
       "mac": "5c9ba68f3221",
       "ip": "",
-      "status": "Ready to Deploy",
+      "status": "Deployed",
       "assignedTo": "R69010",
       "purchaseDate": "2026-03-01",
       "warrantyDate": "",
@@ -837,6 +837,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795595963949",
+      "timestamp": "2026-11-25T08:39:23.949Z",
+      "category": "ASSET_MGMT",
+      "target": "COM-2026-0025",
+      "details": "Updated specifications or assignment (Assigned to: R69010)"
+    },
     {
       "id": "LOG-1795595951168",
       "timestamp": "2026-11-25T08:39:11.168Z",
