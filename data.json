@@ -56,7 +56,7 @@
       "tag": "COM-00001-086",
       "type": "Laptop",
       "os": "Windows",
-      "model": "LENOVO model : 21SYS0MG00 E14",
+      "model": "LENOVO model : 21SYS0MG00",
       "serial": "PF68PM09",
       "cpu": "1x Intel® Core™ Ultra 5 225U",
       "ram": "16 GB",
@@ -856,6 +856,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795601596867",
+      "timestamp": "2026-11-25T10:13:16.867Z",
+      "category": "ASSET_MGMT",
+      "target": "COM-00001-086",
+      "details": "Updated specifications or assignment (Assigned to: R69009)"
+    },
     {
       "id": "LOG-1795601586720",
       "timestamp": "2026-11-25T10:13:06.720Z",
