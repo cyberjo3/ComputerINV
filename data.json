@@ -303,7 +303,7 @@
       "tag": "COM-0001-0001",
       "type": "Laptop",
       "os": "macOS",
-      "model": "\"MacBook Pro 14-inch  (Warranty 1 Year)  M1 Pro (SCPG2ZX/A)\"",
+      "model": "\"MacBook Pro 14-inch",
       "serial": "sX0R0WNR991",
       "cpu": "M1 Pro chip 8-core CPU",
       "ram": "16 GB",
@@ -856,6 +856,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795601696815",
+      "timestamp": "2026-11-25T10:14:56.815Z",
+      "category": "ASSET_MGMT",
+      "target": "COM-0001-0001",
+      "details": "Updated specifications or assignment (Assigned to: R69008)"
+    },
     {
       "id": "LOG-1795601596867",
       "timestamp": "2026-11-25T10:13:16.867Z",
