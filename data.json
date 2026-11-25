@@ -488,6 +488,25 @@
       "notes": "",
       "security": null,
       "auditHistory": []
+    },
+    {
+      "tag": "COM-2026-0009",
+      "type": "Laptop",
+      "os": "macOS",
+      "model": "MacBook Air 13-inch M4",
+      "serial": "C09GDWX63C",
+      "cpu": "M4 chip with 8 core CPU",
+      "ram": "16 GB",
+      "storage": "512 GB",
+      "mac": "a09a8e4468a6",
+      "ip": "",
+      "status": "Deployed",
+      "assignedTo": "R69004",
+      "purchaseDate": "2026-04-01",
+      "warrantyDate": "",
+      "notes": "",
+      "security": null,
+      "auditHistory": []
     }
   ],
   "accessories": [],
@@ -780,6 +799,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795594236693",
+      "timestamp": "2026-11-25T08:10:36.693Z",
+      "category": "ASSET_MGMT",
+      "target": "COM-2026-0009",
+      "details": "Added computer: MacBook Air 13-inch M4 (C09GDWX63C)"
+    },
     {
       "id": "LOG-1795594021111",
       "timestamp": "2026-11-25T08:07:01.111Z",
