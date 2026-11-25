@@ -224,7 +224,7 @@
       "auditHistory": []
     },
     {
-      "tag": "Pitipong",
+      "tag": "COM-2026-0017",
       "type": "Laptop",
       "os": "Windows",
       "model": "LENOVO model : 21SYS0MG00",
@@ -723,6 +723,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795593243658",
+      "timestamp": "2026-11-25T07:54:03.658Z",
+      "category": "ASSET_MGMT",
+      "target": "COM-2026-0017",
+      "details": "Updated specifications or assignment (Assigned to: R69005)"
+    },
     {
       "id": "LOG-1795593208451",
       "timestamp": "2026-11-25T07:53:28.451Z",
