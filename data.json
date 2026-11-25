@@ -857,6 +857,20 @@
   ],
   "logs": [
     {
+      "id": "LOG-1795599902316",
+      "timestamp": "2026-11-25T09:45:02.316Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session authenticated via Passcode"
+    },
+    {
+      "id": "LOG-1795599894168",
+      "timestamp": "2026-11-25T09:44:54.168Z",
+      "category": "SECURITY",
+      "target": "SYSTEM",
+      "details": "Session logged out and data synchronized"
+    },
+    {
       "id": "LOG-1795599869026",
       "timestamp": "2026-11-25T09:44:29.026Z",
       "category": "ASSET_MGMT",
