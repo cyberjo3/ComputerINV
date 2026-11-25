@@ -129,7 +129,7 @@
       "auditHistory": []
     },
     {
-      "tag": "IT_SEC_TEST",
+      "tag": "COM-00001-013",
       "type": "Laptop",
       "os": "Windows",
       "model": "LENOVO model : 21SYS0MG00",
@@ -723,6 +723,13 @@
     }
   ],
   "logs": [
+    {
+      "id": "LOG-1795593185891",
+      "timestamp": "2026-11-25T07:53:05.891Z",
+      "category": "ASSET_MGMT",
+      "target": "COM-00001-013",
+      "details": "Updated specifications or assignment (Assigned to: Unassigned)"
+    },
     {
       "id": "LOG-1795593139950",
       "timestamp": "2026-11-25T07:52:19.950Z",
